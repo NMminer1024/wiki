@@ -1,0 +1,226 @@
+﻿/* NMMiner Wiki Visual System */
+
+:root {
+  --nm-ink:           #0B0E14;
+  --nm-ink-soft:      #11161f;
+  --nm-ink-elevated:  #1a2030;
+  --nm-bitcoin:       #F7931A;
+  --nm-bitcoin-light: #ffb04a;
+  --nm-bitcoin-dark:  #c97500;
+  --nm-cyan:          #4DD0E1;
+  --nm-cyan-soft:     rgba(77, 208, 225, 0.18);
+  --nm-mint:          #6EE7B7;
+  --nm-amber-soft:    rgba(247, 147, 26, 0.12);
+  --nm-amber-border:  rgba(247, 147, 26, 0.25);
+  --nm-text:          #E6EAF2;
+  --nm-text-soft:     #a8b0bd;
+  --nm-text-faint:    #6b7280;
+  --nm-warn:          #FF7E67;
+  --nm-danger:        #ff4d4f;
+
+  --ifm-color-primary:         var(--nm-bitcoin);
+  --ifm-color-primary-dark:    var(--nm-bitcoin-dark);
+  --ifm-color-primary-darker:  #b56700;
+  --ifm-color-primary-darkest: #8c4f00;
+  --ifm-color-primary-light:   var(--nm-bitcoin-light);
+  --ifm-color-primary-lighter: #ffbc66;
+  --ifm-color-primary-lightest:#ffd194;
+
+  --ifm-background-color:         var(--nm-ink);
+  --ifm-background-surface-color: var(--nm-ink-soft);
+  --ifm-font-color-base:          var(--nm-text);
+  --ifm-font-color-secondary:     var(--nm-text-soft);
+  --ifm-font-color-inverse:       var(--nm-ink);
+
+  --ifm-navbar-background-color:  rgba(11, 14, 20, 0.85);
+  --ifm-navbar-link-color:        var(--nm-text);
+  --ifm-navbar-link-hover-color:  var(--nm-bitcoin);
+  --ifm-navbar-link-active-color: var(--nm-bitcoin);
+
+  --ifm-footer-background-color: #0a0d12;
+  --ifm-footer-color:            var(--nm-text);
+  --ifm-footer-link-color:       var(--nm-text-soft);
+  --ifm-footer-link-hover-color: var(--nm-bitcoin);
+
+  --ifm-card-background-color:   rgba(26, 32, 48, 0.6);
+  --ifm-color-emphasis-200:      rgba(247, 147, 26, 0.18);
+  --ifm-color-emphasis-300:      rgba(247, 147, 26, 0.28);
+  --ifm-color-warning:           var(--nm-warn);
+
+  --ifm-global-radius:    0.75rem;
+  --ifm-code-background:  #161b25;
+  --ifm-code-color:       var(--nm-cyan);
+
+  --ifm-menu-color:                  var(--nm-text);
+  --ifm-menu-color-active:           var(--nm-bitcoin);
+  --ifm-menu-color-background-active:rgba(247, 147, 26, 0.10);
+
+  --ifm-link-color:        var(--nm-bitcoin);
+  --ifm-link-hover-color:  var(--nm-bitcoin-light);
+
+  --ifm-button-background-color: var(--nm-bitcoin);
+  --ifm-button-color:            var(--nm-ink);
+
+  --ifm-font-family-base:      'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', monospace;
+  --ifm-heading-font-family:   'Space Grotesk', 'Noto Sans SC', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background-color: var(--nm-ink); color: var(--nm-text); }
+
+.nm-glow { position: relative; background-color: var(--nm-ink); overflow: hidden; }
+.nm-glow::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 18% 25%, rgba(247, 147, 26, 0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 75%, rgba(77, 208, 225, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247, 147, 26, 0.05) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+.nm-glow > * { position: relative; z-index: 1; }
+
+.nm-grid { position: relative; background-color: var(--nm-ink); }
+.nm-grid::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(247, 147, 26, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 147, 26, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none; z-index: 0;
+}
+.nm-grid > * { position: relative; z-index: 1; }
+
+*:focus-visible {
+  outline: 2px solid var(--nm-bitcoin);
+  outline-offset: 2px; border-radius: 4px;
+}
+
+.navbar {
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(247, 147, 26, 0.15);
+  box-shadow: none;
+}
+.navbar__title { font-family: var(--ifm-heading-font-family); font-weight: 700; letter-spacing: -0.02em; }
+
+/* Make the navbar logo larger than Docusaurus's default 32px height. */
+.navbar__logo {
+  height: 44px;
+  width: 44px;
+  margin-right: 0.6rem;
+}
+.navbar__logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.navbar__link { font-weight: 500; transition: color 0.2s ease; }
+.navbar__link:hover { color: var(--nm-bitcoin); }
+.navbar__link--active { color: var(--nm-bitcoin); }
+
+.footer { border-top: 1px solid rgba(247, 147, 26, 0.10); }
+.footer__link-item:hover { color: var(--nm-bitcoin); }
+
+.menu { font-weight: 400; }
+.menu__link { border-radius: 6px; transition: all 0.15s ease; }
+.menu__link:hover { background-color: rgba(247, 147, 26, 0.08); }
+.menu__link--active {
+  background-color: var(--ifm-menu-color-background-active);
+  color: var(--nm-bitcoin); font-weight: 600;
+}
+
+.theme-doc-markdown h1, .theme-doc-markdown h2, .theme-doc-markdown h3, .theme-doc-markdown h4 {
+  font-family: var(--ifm-heading-font-family);
+  color: var(--nm-text);
+}
+.theme-doc-markdown h1 { font-weight: 700; letter-spacing: -0.03em; }
+.theme-doc-markdown h2 {
+  font-weight: 600;
+  border-bottom: 1px solid rgba(247, 147, 26, 0.18);
+  padding-bottom: 0.5rem;
+}
+.theme-doc-markdown a {
+  color: var(--nm-bitcoin); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.theme-doc-markdown a:hover { border-bottom-color: var(--nm-bitcoin); }
+
+.theme-code-block {
+  border-radius: var(--ifm-global-radius);
+  border: 1px solid rgba(247, 147, 26, 0.18);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+pre code { font-family: var(--ifm-font-family-monospace); }
+code {
+  background-color: var(--ifm-code-background);
+  color: var(--ifm-code-color);
+  border: 1px solid rgba(77, 208, 225, 0.18);
+  border-radius: 4px; padding: 0.15em 0.4em; font-size: 0.875em;
+}
+
+.theme-admonition { border-radius: var(--ifm-global-radius); border-left-width: 4px; }
+.theme-admonition-tip { border-left-color: var(--nm-bitcoin); background-color: var(--nm-amber-soft); }
+.theme-admonition-warning { border-left-color: var(--nm-warn); background-color: rgba(255, 126, 103, 0.08); }
+.theme-admonition-danger { border-left-color: var(--nm-danger); background-color: rgba(255, 77, 79, 0.08); }
+.theme-admonition-info { border-left-color: var(--nm-cyan); background-color: var(--nm-cyan-soft); }
+
+.breadcrumbs__item--active .breadcrumbs__link { color: var(--nm-bitcoin); }
+.pagination-nav__link {
+  border: 1px solid rgba(247, 147, 26, 0.18);
+  border-radius: var(--ifm-global-radius);
+}
+.pagination-nav__link:hover { border-color: var(--nm-bitcoin); }
+.table-of-contents__link:hover { color: var(--nm-bitcoin); }
+.table-of-contents__link--active { color: var(--nm-bitcoin); font-weight: 600; }
+
+.hero { background-color: transparent; }
+.hero__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 700; color: var(--nm-text); letter-spacing: -0.02em;
+}
+.hero__subtitle { color: var(--nm-text-soft); }
+.button--primary {
+  background-color: var(--nm-bitcoin); border-color: var(--nm-bitcoin);
+  color: var(--nm-ink); font-weight: 600;
+}
+.button--primary:hover {
+  background-color: var(--nm-bitcoin-light); border-color: var(--nm-bitcoin-light);
+}
+/* Secondary button uses the same Bitcoin-orange treatment as the primary
+   button (per user request — both CTAs should look identical). */
+.button--secondary {
+  background-color: var(--nm-bitcoin);
+  border-color: var(--nm-bitcoin);
+  color: var(--nm-ink);
+  font-weight: 600;
+}
+.button--secondary:hover {
+  background-color: var(--nm-bitcoin-light);
+  border-color: var(--nm-bitcoin-light);
+  color: var(--nm-ink);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--nm-ink); }
+::-webkit-scrollbar-thumb { background: rgba(247, 147, 26, 0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(247, 147, 26, 0.5); }
+
+.main-wrapper { background-color: var(--nm-ink); }
+.theme-doc-sidebar-container {
+  background-color: var(--nm-ink);
+  border-right: 1px solid rgba(247, 147, 26, 0.08);
+}
+
+.theme-doc-markdown table { display: table; width: 100%; border-collapse: collapse; }
+.theme-doc-markdown thead { background-color: rgba(247, 147, 26, 0.10); }
+.theme-doc-markdown th, .theme-doc-markdown td { border: 1px solid rgba(247, 147, 26, 0.12); }
+
+.docusaurus-mermaid-container {
+  background: var(--nm-ink-soft);
+  border: 1px solid rgba(247, 147, 26, 0.15);
+  border-radius: var(--ifm-global-radius);
+  padding: 1rem;
+}

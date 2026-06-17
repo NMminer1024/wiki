@@ -1,0 +1,78 @@
+{
+  "link.title.Docs": {
+    "message": "文档",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Tools": {
+    "message": "工具",
+    "description": "The title of the footer links column with title=Tools in the footer"
+  },
+  "link.title.Community": {
+    "message": "社区",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "更多",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Quick Start": {
+    "message": "快速开始",
+    "description": "The label of footer link with label=Quick Start linking to /docs/getting-started/quick-start"
+  },
+  "link.item.label.Hardware": {
+    "message": "硬件",
+    "description": "The label of footer link with label=Hardware linking to /docs/hardware/overview"
+  },
+  "link.item.label.User Guide": {
+    "message": "使用指南",
+    "description": "The label of footer link with label=User Guide linking to /docs/user-guide/buttons"
+  },
+  "link.item.label.How Mining Works": {
+    "message": "挖矿原理",
+    "description": "The label of footer link with label=How Mining Works linking to /docs/how-mining-works/bitcoin-mining-basics"
+  },
+  "link.item.label.API": {
+    "message": "API",
+    "description": "The label of footer link with label=API linking to /docs/api/overview"
+  },
+  "link.item.label.Flash Tool": {
+    "message": "烧录工具",
+    "description": "The label of footer link with label=Flash Tool linking to https://flash.nmminer.com"
+  },
+  "link.item.label.NM Monitor": {
+    "message": "NM Monitor",
+    "description": "The label of footer link with label=NM Monitor linking to /docs/user-guide/nm-monitor"
+  },
+  "link.item.label.Swarm Menu": {
+    "message": "Swarm 菜单",
+    "description": "The label of footer link with label=Swarm Menu linking to /docs/user-guide/swarm"
+  },
+  "link.item.label.Ladder": {
+    "message": "天梯榜",
+    "description": "The label of footer link with label=Ladder linking to https://ladder.nmminer.com/"
+  },
+  "link.item.label.Telegram": {
+    "message": "Telegram",
+    "description": "The label of footer link with label=Telegram linking to https://t.me/NMMiner"
+  },
+  "link.item.label.Email": {
+    "message": "邮箱",
+    "description": "The label of footer link with label=Email linking to mailto:nmminer1024@gmail.com"
+  },
+  "link.item.label.Website": {
+    "message": "官网",
+    "description": "The label of footer link with label=Website linking to https://www.nmminer.com"
+  },
+  "link.item.label.FAQ": {
+    "message": "常见问题",
+    "description": "The label of footer link with label=FAQ linking to /docs/reference/faq"
+  },
+  "link.item.label.Glossary": {
+    "message": "术语表",
+    "description": "The label of footer link with label=Glossary linking to /docs/reference/glossary"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 NMTech. NMMiner Wiki built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

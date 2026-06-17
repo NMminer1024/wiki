@@ -1,0 +1,24 @@
+/* Bare-bones Infima overrides — see nmminer-theme.css for the real visual system */
+
+:root {
+  --ifm-color-primary: #F7931A;
+  --ifm-color-primary-dark: #e6820a;
+  --ifm-color-primary-darker: #d97a08;
+  --ifm-color-primary-darkest: #b46306;
+  --ifm-color-primary-light: #f9a23a;
+  --ifm-color-primary-lighter: #fab04c;
+  --ifm-color-primary-lightest: #fdc479;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(247, 147, 26, 0.12);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #F7931A;
+  --ifm-color-primary-dark: #e6820a;
+  --ifm-color-primary-darker: #d97a08;
+  --ifm-color-primary-darkest: #b46306;
+  --ifm-color-primary-light: #f9a23a;
+  --ifm-color-primary-lighter: #fab04c;
+  --ifm-color-primary-lightest: #fdc479;
+  --docusaurus-highlighted-code-line-bg: rgba(247, 147, 26, 0.18);
+}

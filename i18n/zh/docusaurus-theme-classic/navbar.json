@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "NMMiner",
+    "description": "The title in the navbar"
+  },
+  "item.label.Docs": {
+    "message": "文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Get Started": {
+    "message": "快速开始",
+    "description": "Navbar item with label Get Started"
+  },
+  "item.label.Hardware": {
+    "message": "硬件",
+    "description": "Navbar item with label Hardware"
+  },
+  "item.label.How Mining Works": {
+    "message": "挖矿原理",
+    "description": "Navbar item with label How Mining Works"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.Flash Tool": {
+    "message": "烧录工具",
+    "description": "Navbar item with label Flash Tool"
+  },
+  "item.label.Ladder": {
+    "message": "天梯榜",
+    "description": "Navbar item with label Ladder"
+  },
+  "item.label.Website": {
+    "message": "官网",
+    "description": "Navbar item with label Website"
+  },
+  "logo.alt": {
+    "message": "NMMiner Logo",
+    "description": "The alt text of navbar logo"
+  }
+}

@@ -1,0 +1,30 @@
+﻿{
+  "version.label": {
+    "message": "当前",
+    "description": "The label for version current"
+  },
+  "sidebar.wikiSidebar.category.Getting Started": {
+    "message": "快速上手",
+    "description": "The label for category Getting Started in sidebar wikiSidebar"
+  },
+  "sidebar.wikiSidebar.category.Hardware": {
+    "message": "硬件",
+    "description": "The label for category Hardware in sidebar wikiSidebar"
+  },
+  "sidebar.wikiSidebar.category.User Guide": {
+    "message": "使用指南",
+    "description": "The label for category User Guide in sidebar wikiSidebar"
+  },
+  "sidebar.wikiSidebar.category.How Mining Works": {
+    "message": "挖矿原理",
+    "description": "The label for category How Mining Works in sidebar wikiSidebar"
+  },
+  "sidebar.wikiSidebar.category.API Reference": {
+    "message": "API 参考",
+    "description": "The label for category API Reference in sidebar wikiSidebar"
+  },
+  "sidebar.wikiSidebar.category.Reference": {
+    "message": "参考资料",
+    "description": "The label for category Reference in sidebar wikiSidebar"
+  }
+}
