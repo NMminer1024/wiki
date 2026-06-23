@@ -13,18 +13,8 @@ NMMiner ships as a single browser-flashable image. No `esptool` or `idf.py` requ
 2. Plug your board in via USB.
 3. Pick your board from the list. The tool will fetch the matching firmware from the official GitHub release.
 4. Click **Install**, choose the serial port, and wait for "Flash complete".
-5. The tool will print a **licence string** at the end — copy it. You will need it once on the activation page.
+5. The tool will prompt you to **purchase a licence**. Once purchased, it displays your licence string — copy it. You will need it once on the activation page.
 
 :::warning
 If your board does not auto-enter download mode, hold `BOOT` while pressing `RESET`, then release.
 :::
-
-## When to re-flash
-
-| Situation                          | Action                                                    |
-| ---------------------------------- | --------------------------------------------------------- |
-| Plain firmware update              | Re-run the flash tool; pick the latest version. **You do not need to re-activate.** |
-| Lost licence                       | Re-run the flash tool — it will issue a new licence.      |
-| Switching board model              | Flash with the new boards profile and re-activate.        |
-
-See also: [Activate Licence](./activate-licence.md).

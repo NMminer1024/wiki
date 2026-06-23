@@ -18,7 +18,7 @@ title: 快速上手
 ## 五步搞定
 
 1. **烧录固件** — 打开 [flash.nmminer.com](https://flash.nmminer.com)，选板型，点 *Install*。详见 [烧录固件](./flash-firmware.md)。
-2. **激活授权** — 把烧录工具返回的授权字符串粘贴回激活框。详见 [激活授权](./activate-licence.md)。
+2. **购买并激活 License** — 烧录工具会引导你购买 License，然后把 License 字符串粘贴到激活框。详见 [激活授权](./activate-licence.md)。
 3. 用手机连上 **`nmap-2.4g`** 开放热点，配网页会自动弹出。电脑请手动访问 `http://192.168.4.1`。
 4. **配置**：在网页上填 WiFi（必填）和钱包（推荐改），按 **Save**。矿机会在 ~15 秒内重启。详见 [初次配置](./first-configuration.md)。
 5. **看它开始挖矿** — 屏幕上的 Miner 页显示实时 hashrate、已接受的 share、矿池 diff。访问 [solobtc.nmminer.com](https://solobtc.nmminer.com) 可以看到你的 worker 出现在矿池 dashboard 上。

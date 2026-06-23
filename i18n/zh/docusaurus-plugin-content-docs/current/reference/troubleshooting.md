@@ -42,7 +42,7 @@ title: 故障排查
 
 ### Share 全被拒绝
 
-- 矿池 diff 太高。换成 public-pool / TAZ 端点。
+- 矿池 diff 太高。换成 NMMiner 官方 SoloBTC 矿池（或官方备用矿池）。
 - 检查 wallet 字段 — 很多矿池拒掉格式错的 worker 名。
 
 ### 打不开 NM Monitor

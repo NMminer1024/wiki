@@ -9,7 +9,10 @@
 .cache-loader
 
 # Misc
+WIKI_RULES.md
 .DS_Store
+.claude
+*.log
 .env.local
 .env.development.local
 .env.test.local

@@ -19,6 +19,6 @@ title: Glossary
 | **Pool diff**           | Minimum share difficulty the pool accepts.                                       |
 | **Probe**               | The lightweight `/probe` endpoint used for LAN identification.                   |
 | **Share**               | A hash that meets the pool diff but not the network diff.                        |
-| **SoloBTC**             | NMMiner s own public-pool fork: `solobtc.nmminer.com`. The default pool on every shipped device. |
+| **SoloBTC**             | NMMiner's official mining pool: [solobtc.nmminer.com](https://solobtc.nmminer.com). The default pool on every shipped device. |
 | **Stratum**             | The pool protocol NMMiner speaks. v1 only.                                       |
 | **Swarm**               | The Swarm menu in NM Monitor — LAN-wide miner aggregation, zero-install. Up to 255 devices per /24 subnet. |

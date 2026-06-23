@@ -16,7 +16,7 @@ NMMiner ships pre-configured to our own pool — **you usually don't need to cha
 | Primary    | `stratum+tcp://solobtc.nmminer.com:3333`         | Global   |
 | Fallback   | `stratum+tcp://au.solobtc.nmminer.com:3333`      | Asia-Pacific |
 
-Both are operated by NMMiner. They're forks of public-pool that play nicely with hundred-KH/s miners. Dashboard: [solobtc.nmminer.com](https://solobtc.nmminer.com).
+Both are NMMiner's official [SoloBTC](https://solobtc.nmminer.com) pools, designed for hundred-KH/s miners. Dashboard: [solobtc.nmminer.com](https://solobtc.nmminer.com).
 
 When the primary becomes unreachable the miner automatically switches to the fallback. When the primary recovers, the miner switches back within ~10 seconds (since v1.7.05).
 
@@ -33,4 +33,4 @@ NMMiner currently supports **Bitcoin (BTC)** and **DigiByte (DGB)**. Both use SH
 
 ## Why not big commercial pools?
 
-NMMiner's hashrate is on the order of hundreds of KH/s. Pools that mandate a high minimum share difficulty will reject every NMMiner share. Stick to NMMiner's SoloBTC, public-pool style endpoints, or community SoloBTC pools — anything that accepts very low share diff.
+NMMiner's hashrate is on the order of hundreds of KH/s. Pools that mandate a high minimum share difficulty will reject every NMMiner share. Stick to NMMiner's official [SoloBTC](https://solobtc.nmminer.com) pools or community solo-style pools — anything that accepts very low share diff.

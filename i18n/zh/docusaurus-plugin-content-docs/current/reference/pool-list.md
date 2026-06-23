@@ -14,7 +14,7 @@ title: 矿池列表
 | **NMMiner SoloBTC**（默认）         | `stratum+tcp://solobtc.nmminer.com:3333`          | [solobtc.nmminer.com](https://solobtc.nmminer.com)      |
 | **NMMiner SoloBTC AU**（备用）      | `stratum+tcp://au.solobtc.nmminer.com:3333`       | [au.solobtc.nmminer.com](https://au.solobtc.nmminer.com) |
 
-SoloBTC 是 NMMiner 自家运营的 public-pool fork。每台设备出厂都已预配 — 只需要把钱包地址换成你自己的。
+SoloBTC 是 NMMiner 官方运营的矿池。每台设备出厂都已预配 — 只需要把钱包地址换成你自己的。
 
 ## DigiByte (DGB)
 

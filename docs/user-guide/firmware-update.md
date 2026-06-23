@@ -15,10 +15,6 @@ Upgrading is the same as the first flash: re-open the browser flash tool, pick y
 
 After updating you **do not need to re-activate the licence**. Settings (SSID / pool / wallet) survive the upgrade.
 
-:::tip
-A "new firmware available" banner is shown on the on-device loading page and miner page whenever a newer release is published.
-:::
-
 ## Tracking firmware version remotely
 
 The current firmware version is reported by every miner via [`GET /api/system/info`](../api/system.md). Combine that with [Swarm](./swarm.md) discovery and you can see at a glance which miners on the LAN still need an update.

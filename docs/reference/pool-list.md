@@ -14,7 +14,7 @@ Pools known to play nicely with NMMiner's ~150–1000 KH/s hashrate. These all d
 | **NMMiner SoloBTC** (default)     | `stratum+tcp://solobtc.nmminer.com:3333`          | [solobtc.nmminer.com](https://solobtc.nmminer.com)       |
 | **NMMiner SoloBTC AU** (fallback) | `stratum+tcp://au.solobtc.nmminer.com:3333`       | [au.solobtc.nmminer.com](https://au.solobtc.nmminer.com) |
 
-The SoloBTC pools are forks of public-pool operated by NMMiner. They are pre-configured on every device — out of the box you only need to plug your own wallet address.
+The SoloBTC pools are operated by NMMiner. They are pre-configured on every device — out of the box you only need to plug your own wallet address.
 
 ## DigiByte (DGB)
 

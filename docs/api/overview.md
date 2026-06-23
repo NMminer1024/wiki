@@ -82,4 +82,4 @@ The contract is **stable across minor firmware versions** (e.g. `v2.0.x`). Break
 
 ## Discoverability
 
-Visit `http://<miner-ip>/api-doc` for a live HTML reference served by the miner itself. The Markdown reference you are reading is generated from the same contract.
+Visit `http://<miner-ip>/api-doc` for a live HTML reference served by the miner itself. If the actual API differs from this wiki, the device's live `/api-doc` always takes precedence.

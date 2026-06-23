@@ -42,7 +42,7 @@ title: Troubleshooting
 
 ### Shares are all rejected
 
-- The pool diff is set too high. Switch to a public-pool / TAZ-style endpoint.
+- The pool diff is set too high. Switch to NMMiner's official SoloBTC pool (or the official fallback pool).
 - Verify the wallet field — many pools reject incorrectly formatted worker names.
 
 ### Cant reach NM Monitor

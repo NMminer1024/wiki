@@ -19,6 +19,6 @@ title: 术语表
 | **Pool diff**           | 矿池接受的 share 最低难度。                                                       |
 | **Probe**               | LAN 识别用的轻量端点 `/probe`。                                                  |
 | **Share**               | 达到矿池难度但不一定达到网络难度的一次 hash 结果。                               |
-| **SoloBTC**             | NMMiner 自家的 public-pool fork：`solobtc.nmminer.com`。所有出厂设备的默认矿池。  |
+| **SoloBTC**             | NMMiner 官方矿池：[solobtc.nmminer.com](https://solobtc.nmminer.com)。所有出厂设备的默认矿池。  |
 | **Stratum**             | NMMiner 说的矿池协议。仅 v1。                                                     |
 | **Swarm**               | NM Monitor 的 Swarm 菜单 — 局域网级零安装的矿机聚合视图。单 /24 子网最多 255 台。 |

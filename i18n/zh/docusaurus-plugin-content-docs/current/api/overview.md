@@ -82,4 +82,4 @@ Access-Control-Allow-Origin: *
 
 ## 自描述文档
 
-访问 `http://<miner-ip>/api-doc` 可看到设备自带的 HTML API 参考。本 wiki 与之同源。
+访问 `http://<miner-ip>/api-doc` 可看到设备自带的 HTML API 参考。如果实际 API 接口有变化，请以设备自描述的 `/api-doc` 为准。
