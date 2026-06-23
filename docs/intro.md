@@ -33,7 +33,7 @@ Welcome to the **NMMiner** user & integrator documentation hub.
 | Manage your miner from a browser             | [NM Monitor](./user-guide/nm-monitor.md)                       |
 | See every miner on your LAN                  | [Swarm](./user-guide/swarm.md)                                 |
 | Climb the global leaderboard                 | [Ladder](./user-guide/ladder.md)                               |
-| Understand how Bitcoin mining works          | [How Mining Works](./how-mining-works/bitcoin-mining-basics.md)|
+| Understand how Bitcoin mining works          | [Articles](./how-mining-works/bitcoin-mining-basics.md)        |
 | Integrate with the device HTTP API           | [API Reference](./api/overview.md)                             |
 | Troubleshoot                                 | [Troubleshooting](./reference/troubleshooting.md)              |
 

@@ -15,9 +15,9 @@
     "message": "硬件",
     "description": "Navbar item with label Hardware"
   },
-  "item.label.How Mining Works": {
-    "message": "挖矿原理",
-    "description": "Navbar item with label How Mining Works"
+  "item.label.Articles": {
+    "message": "相关文章",
+    "description": "Navbar item with label Articles"
   },
   "item.label.API": {
     "message": "API",

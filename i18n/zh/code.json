@@ -6,7 +6,7 @@
     "message": "快速开始 →"
   },
   "homepage.cta.arch": {
-    "message": "了解挖矿原理"
+    "message": "相关文章"
   },
   "homepage.description": {
     "message": "NMMiner Wiki —— 高性能 ESP32 比特币 Stratum 矿工固件的官方文档。"

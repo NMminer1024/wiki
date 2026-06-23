@@ -45,12 +45,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'How Mining Works',
+      label: 'Articles',
       link: {type: 'generated-index', slug: '/how-mining-works'},
       items: [
         'how-mining-works/bitcoin-mining-basics',
         'how-mining-works/stratum-protocol',
         'how-mining-works/nmminer-in-the-pipeline',
+        'how-mining-works/solo-vs-pool-mining',
       ],
     },
     {

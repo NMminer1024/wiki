@@ -27,7 +27,7 @@ function HomepageHeader() {
             <Translate id="homepage.cta.start">Quick Start →</Translate>
           </Link>
           <Link className="button button--secondary button--lg" to="/docs/how-mining-works/bitcoin-mining-basics" style={{marginLeft: '1rem'}}>
-            <Translate id="homepage.cta.arch">How Mining Works</Translate>
+            <Translate id="homepage.cta.arch">Articles</Translate>
           </Link>
         </div>
       </div>

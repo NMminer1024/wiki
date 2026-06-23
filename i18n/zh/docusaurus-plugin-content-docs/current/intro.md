@@ -33,7 +33,7 @@ title: NMMiner Wiki
 | 用浏览器管理我的矿工               | [NM Monitor](./user-guide/nm-monitor.md)                        |
 | 一眼看到整张局域网的矿工           | [Swarm 菜单](./user-guide/swarm.md)                             |
 | 冲击全球天梯排行榜                 | [天梯榜](./user-guide/ladder.md)                                |
-| 理解比特币挖矿原理                 | [挖矿原理](./how-mining-works/bitcoin-mining-basics.md)         |
+| 理解比特币挖矿原理                 | [相关文章](./how-mining-works/bitcoin-mining-basics.md)         |
 | 用 HTTP API 集成 NMMiner           | [API 参考](./api/overview.md)                                   |
 | 排查问题                           | [故障排查](./reference/troubleshooting.md)                      |
 

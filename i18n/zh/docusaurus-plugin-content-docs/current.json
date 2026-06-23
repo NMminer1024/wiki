@@ -15,9 +15,9 @@
     "message": "使用指南",
     "description": "The label for category User Guide in sidebar wikiSidebar"
   },
-  "sidebar.wikiSidebar.category.How Mining Works": {
-    "message": "挖矿原理",
-    "description": "The label for category How Mining Works in sidebar wikiSidebar"
+  "sidebar.wikiSidebar.category.Articles": {
+    "message": "相关文章",
+    "description": "The label for category Articles in sidebar wikiSidebar"
   },
   "sidebar.wikiSidebar.category.API Reference": {
     "message": "API 参考",
@@ -26,5 +26,9 @@
   "sidebar.wikiSidebar.category.Reference": {
     "message": "参考资料",
     "description": "The label for category Reference in sidebar wikiSidebar"
+  },
+  "sidebar.wikiSidebar.doc.solo-vs-pool-mining": {
+    "message": "Solo vs 矿池挖矿",
+    "description": "The label for doc solo-vs-pool-mining in sidebar wikiSidebar"
   }
 }
