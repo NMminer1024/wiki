@@ -11,8 +11,8 @@ On a freshly-flashed board, NMMiner enters **AP / configuration mode** and expos
 
 | Field           | Default                                                | Purpose                                                              |
 | --------------- | ------------------------------------------------------ | -------------------------------------------------------------------- |
-| **WiFi SSID**   | (empty)                                                | Your 2.4 GHz network name.                                           |
-| **WiFi Password** | (empty)                                              | WPA / WPA2 password.                                                 |
+| **WiFi SSID**   | `NMTech-2.4G`                                          | Your 2.4 GHz network name.                                           |
+| **WiFi Password** | `NMMiner2048`                                        | WPA / WPA2 password.                                                 |
 | **Pool URL (primary)** | `stratum+tcp://solobtc.nmminer.com:3333`        | NMMiner's own SoloBTC pool. Override only if you really need to.     |
 | **Pool URL (fallback)** | `stratum+tcp://au.solobtc.nmminer.com:3333`    | NMMiner's Asia-Pacific fallback. Used if the primary is unreachable. |
 | **Wallet / Worker name** | Demo wallet pre-filled                        | Your BTC payout address, optionally followed by `.workerName`. **Change this!** |

@@ -11,8 +11,8 @@ title: 初次配置
 
 | 字段                | 默认值                                                | 作用                                                                |
 | ------------------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
-| **WiFi SSID**       | （空）                                                | 你的 2.4 GHz 网络名。                                              |
-| **WiFi Password**   | （空）                                                | WPA / WPA2 密码。                                                   |
+| **WiFi SSID**       | `NMTech-2.4G`                                        | 你的 2.4 GHz 网络名。                                              |
+| **WiFi Password**   | `NMMiner2048`                                        | WPA / WPA2 密码。                                                   |
 | **Pool URL (primary)** | `stratum+tcp://solobtc.nmminer.com:3333`           | NMMiner 自家 SoloBTC 矿池。除非有明确理由，否则不需要改。           |
 | **Pool URL (fallback)** | `stratum+tcp://au.solobtc.nmminer.com:3333`        | NMMiner 亚太备用矿池。主矿池不可达时使用。                          |
 | **Wallet / Worker name** | 预填演示钱包                                     | 你的 BTC 收款地址，可加 `.workerName`。**请改成你自己的！**          |
