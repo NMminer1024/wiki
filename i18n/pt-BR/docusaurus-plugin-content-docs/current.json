@@ -1,0 +1,10 @@
+{
+  "version.label": { "message": "Atual", "description": "Version label" },
+  "sidebar.wikiSidebar.category.Getting Started": { "message": "Primeiros Passos", "description": "Sidebar Getting Started" },
+  "sidebar.wikiSidebar.category.Hardware": { "message": "Hardware", "description": "Sidebar Hardware" },
+  "sidebar.wikiSidebar.category.User Guide": { "message": "Guia do Usuário", "description": "Sidebar User Guide" },
+  "sidebar.wikiSidebar.category.Articles": { "message": "Artigos", "description": "Sidebar Articles" },
+  "sidebar.wikiSidebar.category.API Reference": { "message": "Referência API", "description": "Sidebar API Reference" },
+  "sidebar.wikiSidebar.category.Reference": { "message": "Referência", "description": "Sidebar Reference" },
+  "sidebar.wikiSidebar.doc.solo-vs-pool-mining": { "message": "Mineração Solo vs Pool", "description": "Sidebar doc solo-vs-pool-mining" }
+}

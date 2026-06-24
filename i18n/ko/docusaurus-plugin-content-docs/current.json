@@ -1,0 +1,10 @@
+{
+  "version.label": { "message": "현재", "description": "Version label" },
+  "sidebar.wikiSidebar.category.Getting Started": { "message": "시작하기", "description": "Sidebar Getting Started" },
+  "sidebar.wikiSidebar.category.Hardware": { "message": "하드웨어", "description": "Sidebar Hardware" },
+  "sidebar.wikiSidebar.category.User Guide": { "message": "사용자 가이드", "description": "Sidebar User Guide" },
+  "sidebar.wikiSidebar.category.Articles": { "message": "문서", "description": "Sidebar Articles" },
+  "sidebar.wikiSidebar.category.API Reference": { "message": "API 참조", "description": "Sidebar API Reference" },
+  "sidebar.wikiSidebar.category.Reference": { "message": "참고자료", "description": "Sidebar Reference" },
+  "sidebar.wikiSidebar.doc.solo-vs-pool-mining": { "message": "솔로 vs 풀 마이닝", "description": "Sidebar doc solo-vs-pool-mining" }
+}

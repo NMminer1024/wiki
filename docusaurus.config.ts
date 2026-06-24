@@ -40,10 +40,16 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh'],
+    locales: ['en', 'zh', 'de', 'ru', 'es', 'ja', 'ko', 'pt-BR'],
     localeConfigs: {
-      en: { label: 'English', htmlLang: 'en-US' },
-      zh: { label: '中文',     htmlLang: 'zh-CN' },
+      en:   { label: 'English',    htmlLang: 'en-US' },
+      zh:   { label: '中文',       htmlLang: 'zh-CN' },
+      de:   { label: 'Deutsch',    htmlLang: 'de-DE' },
+      ru:   { label: 'Русский',    htmlLang: 'ru-RU' },
+      es:   { label: 'Español',    htmlLang: 'es-ES' },
+      ja:   { label: '日本語',     htmlLang: 'ja-JP' },
+      ko:   { label: '한국어',     htmlLang: 'ko-KR' },
+      'pt-BR': { label: 'Português', htmlLang: 'pt-BR' },
     },
   },
 
@@ -52,6 +58,10 @@ const config: Config = {
     { tagName: 'link', attributes: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' } },
     { tagName: 'link', attributes: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap' } },
   ],
+
+  customFields: {
+    wikiVersion: 'v1.0.0',
+  },
 
   presets: [
     [

@@ -1,0 +1,10 @@
+{
+  "version.label": { "message": "現在", "description": "Version label" },
+  "sidebar.wikiSidebar.category.Getting Started": { "message": "はじめに", "description": "Sidebar Getting Started" },
+  "sidebar.wikiSidebar.category.Hardware": { "message": "ハードウェア", "description": "Sidebar Hardware" },
+  "sidebar.wikiSidebar.category.User Guide": { "message": "ユーザーガイド", "description": "Sidebar User Guide" },
+  "sidebar.wikiSidebar.category.Articles": { "message": "記事", "description": "Sidebar Articles" },
+  "sidebar.wikiSidebar.category.API Reference": { "message": "APIリファレンス", "description": "Sidebar API Reference" },
+  "sidebar.wikiSidebar.category.Reference": { "message": "リファレンス", "description": "Sidebar Reference" },
+  "sidebar.wikiSidebar.doc.solo-vs-pool-mining": { "message": "ソロ vs プールマイニング", "description": "Sidebar doc solo-vs-pool-mining" }
+}

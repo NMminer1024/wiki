@@ -1,0 +1,10 @@
+{
+  "version.label": { "message": "Текущая", "description": "Version label" },
+  "sidebar.wikiSidebar.category.Getting Started": { "message": "Начало работы", "description": "Sidebar Getting Started" },
+  "sidebar.wikiSidebar.category.Hardware": { "message": "Оборудование", "description": "Sidebar Hardware" },
+  "sidebar.wikiSidebar.category.User Guide": { "message": "Руководство", "description": "Sidebar User Guide" },
+  "sidebar.wikiSidebar.category.Articles": { "message": "Статьи", "description": "Sidebar Articles" },
+  "sidebar.wikiSidebar.category.API Reference": { "message": "API Справка", "description": "Sidebar API Reference" },
+  "sidebar.wikiSidebar.category.Reference": { "message": "Справочник", "description": "Sidebar Reference" },
+  "sidebar.wikiSidebar.doc.solo-vs-pool-mining": { "message": "Соло vs Пул-майнинг", "description": "Sidebar doc solo-vs-pool-mining" }
+}

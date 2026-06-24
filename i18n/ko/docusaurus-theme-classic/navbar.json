@@ -1,0 +1,12 @@
+{
+  "title": { "message": "NMMiner", "description": "The title in the navbar" },
+  "item.label.Docs": { "message": "문서", "description": "Navbar Docs" },
+  "item.label.Get Started": { "message": "빠른 시작", "description": "Navbar Get Started" },
+  "item.label.Hardware": { "message": "하드웨어", "description": "Navbar Hardware" },
+  "item.label.Articles": { "message": "문서", "description": "Navbar Articles" },
+  "item.label.API": { "message": "API", "description": "Navbar API" },
+  "item.label.Flash Tool": { "message": "플래시 도구", "description": "Navbar Flash Tool" },
+  "item.label.Ladder": { "message": "랭킹", "description": "Navbar Ladder" },
+  "item.label.Website": { "message": "웹사이트", "description": "Navbar Website" },
+  "logo.alt": { "message": "NMMiner 로고", "description": "Logo alt text" }
+}

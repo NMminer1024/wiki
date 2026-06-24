@@ -1,0 +1,21 @@
+{
+  "link.title.Docs": { "message": "ドキュメント", "description": "Footer Docs" },
+  "link.title.Tools": { "message": "ツール", "description": "Footer Tools" },
+  "link.title.Community": { "message": "コミュニティ", "description": "Footer Community" },
+  "link.title.More": { "message": "その他", "description": "Footer More" },
+  "link.item.label.Quick Start": { "message": "クイックスタート", "description": "Footer Quick Start" },
+  "link.item.label.Hardware": { "message": "ハードウェア", "description": "Footer Hardware" },
+  "link.item.label.User Guide": { "message": "ユーザーガイド", "description": "Footer User Guide" },
+  "link.item.label.Articles": { "message": "記事", "description": "Footer Articles" },
+  "link.item.label.API": { "message": "API", "description": "Footer API" },
+  "link.item.label.Flash Tool": { "message": "書き込みツール", "description": "Footer Flash Tool" },
+  "link.item.label.NM Monitor": { "message": "NM Monitor", "description": "Footer NM Monitor" },
+  "link.item.label.Swarm Menu": { "message": "Swarmメニュー", "description": "Footer Swarm Menu" },
+  "link.item.label.Ladder": { "message": "ランキング", "description": "Footer Ladder" },
+  "link.item.label.Telegram": { "message": "Telegram", "description": "Footer Telegram" },
+  "link.item.label.Email": { "message": "メール", "description": "Footer Email" },
+  "link.item.label.Website": { "message": "ウェブサイト", "description": "Footer Website" },
+  "link.item.label.FAQ": { "message": "FAQ", "description": "Footer FAQ" },
+  "link.item.label.Glossary": { "message": "用語集", "description": "Footer Glossary" },
+  "copyright": { "message": "Copyright © 2026 NMTech. NMMiner WikiはDocusaurusで作成されています。", "description": "Footer copyright" }
+}

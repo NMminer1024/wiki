@@ -1,0 +1,21 @@
+{
+  "link.title.Docs": { "message": "Dokumentation", "description": "The title of the footer links column with title=Docs" },
+  "link.title.Tools": { "message": "Tools", "description": "The title of the footer links column with title=Tools" },
+  "link.title.Community": { "message": "Community", "description": "The title of the footer links column with title=Community" },
+  "link.title.More": { "message": "Mehr", "description": "The title of the footer links column with title=More" },
+  "link.item.label.Quick Start": { "message": "Schnellstart", "description": "Footer link Quick Start" },
+  "link.item.label.Hardware": { "message": "Hardware", "description": "Footer link Hardware" },
+  "link.item.label.User Guide": { "message": "Benutzerhandbuch", "description": "Footer link User Guide" },
+  "link.item.label.Articles": { "message": "Artikel", "description": "Footer link Articles" },
+  "link.item.label.API": { "message": "API", "description": "Footer link API" },
+  "link.item.label.Flash Tool": { "message": "Flash-Tool", "description": "Footer link Flash Tool" },
+  "link.item.label.NM Monitor": { "message": "NM Monitor", "description": "Footer link NM Monitor" },
+  "link.item.label.Swarm Menu": { "message": "Swarm-Menü", "description": "Footer link Swarm Menu" },
+  "link.item.label.Ladder": { "message": "Rangliste", "description": "Footer link Ladder" },
+  "link.item.label.Telegram": { "message": "Telegram", "description": "Footer link Telegram" },
+  "link.item.label.Email": { "message": "E-Mail", "description": "Footer link Email" },
+  "link.item.label.Website": { "message": "Website", "description": "Footer link Website" },
+  "link.item.label.FAQ": { "message": "FAQ", "description": "Footer link FAQ" },
+  "link.item.label.Glossary": { "message": "Glossar", "description": "Footer link Glossary" },
+  "copyright": { "message": "Copyright © 2026 NMTech. NMMiner Wiki erstellt mit Docusaurus.", "description": "The footer copyright" }
+}

@@ -47,6 +47,9 @@ export default function Home(): ReactNode {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <div className={styles.versionBadge}>
+          <Translate id="homepage.version">Wiki Version</Translate>: {siteConfig.customFields?.wikiVersion as string}
+        </div>
       </main>
     </Layout>
   );

@@ -16,3 +16,12 @@
   flex-wrap: wrap;
   gap: 0.75rem;
 }
+
+.versionBadge {
+  text-align: center;
+  padding: 2rem 0 3rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-500);
+  font-family: var(--ifm-font-family-monospace);
+  user-select: none;
+}

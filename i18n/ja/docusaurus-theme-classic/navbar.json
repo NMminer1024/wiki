@@ -1,0 +1,12 @@
+{
+  "title": { "message": "NMMiner", "description": "The title in the navbar" },
+  "item.label.Docs": { "message": "ドキュメント", "description": "Navbar Docs" },
+  "item.label.Get Started": { "message": "クイックスタート", "description": "Navbar Get Started" },
+  "item.label.Hardware": { "message": "ハードウェア", "description": "Navbar Hardware" },
+  "item.label.Articles": { "message": "記事", "description": "Navbar Articles" },
+  "item.label.API": { "message": "API", "description": "Navbar API" },
+  "item.label.Flash Tool": { "message": "書き込みツール", "description": "Navbar Flash Tool" },
+  "item.label.Ladder": { "message": "ランキング", "description": "Navbar Ladder" },
+  "item.label.Website": { "message": "ウェブサイト", "description": "Navbar Website" },
+  "logo.alt": { "message": "NMMiner ロゴ", "description": "Logo alt text" }
+}

@@ -1,0 +1,12 @@
+{
+  "title": { "message": "NMMiner", "description": "The title in the navbar" },
+  "item.label.Docs": { "message": "Документация", "description": "Navbar Docs" },
+  "item.label.Get Started": { "message": "Быстрый старт", "description": "Navbar Get Started" },
+  "item.label.Hardware": { "message": "Оборудование", "description": "Navbar Hardware" },
+  "item.label.Articles": { "message": "Статьи", "description": "Navbar Articles" },
+  "item.label.API": { "message": "API", "description": "Navbar API" },
+  "item.label.Flash Tool": { "message": "Прошивка", "description": "Navbar Flash Tool" },
+  "item.label.Ladder": { "message": "Рейтинг", "description": "Navbar Ladder" },
+  "item.label.Website": { "message": "Сайт", "description": "Navbar Website" },
+  "logo.alt": { "message": "NMMiner Logo", "description": "Logo alt text" }
+}

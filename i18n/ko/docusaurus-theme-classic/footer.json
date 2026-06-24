@@ -1,0 +1,21 @@
+{
+  "link.title.Docs": { "message": "문서", "description": "Footer Docs" },
+  "link.title.Tools": { "message": "도구", "description": "Footer Tools" },
+  "link.title.Community": { "message": "커뮤니티", "description": "Footer Community" },
+  "link.title.More": { "message": "더 보기", "description": "Footer More" },
+  "link.item.label.Quick Start": { "message": "빠른 시작", "description": "Footer Quick Start" },
+  "link.item.label.Hardware": { "message": "하드웨어", "description": "Footer Hardware" },
+  "link.item.label.User Guide": { "message": "사용자 가이드", "description": "Footer User Guide" },
+  "link.item.label.Articles": { "message": "문서", "description": "Footer Articles" },
+  "link.item.label.API": { "message": "API", "description": "Footer API" },
+  "link.item.label.Flash Tool": { "message": "플래시 도구", "description": "Footer Flash Tool" },
+  "link.item.label.NM Monitor": { "message": "NM Monitor", "description": "Footer NM Monitor" },
+  "link.item.label.Swarm Menu": { "message": "Swarm 메뉴", "description": "Footer Swarm Menu" },
+  "link.item.label.Ladder": { "message": "랭킹", "description": "Footer Ladder" },
+  "link.item.label.Telegram": { "message": "Telegram", "description": "Footer Telegram" },
+  "link.item.label.Email": { "message": "이메일", "description": "Footer Email" },
+  "link.item.label.Website": { "message": "웹사이트", "description": "Footer Website" },
+  "link.item.label.FAQ": { "message": "FAQ", "description": "Footer FAQ" },
+  "link.item.label.Glossary": { "message": "용어집", "description": "Footer Glossary" },
+  "copyright": { "message": "Copyright © 2026 NMTech. NMMiner Wiki는 Docusaurus로 제작되었습니다.", "description": "Footer copyright" }
+}

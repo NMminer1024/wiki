@@ -1,0 +1,12 @@
+{
+  "title": { "message": "NMMiner", "description": "The title in the navbar" },
+  "item.label.Docs": { "message": "Dokumentation", "description": "Navbar item with label Docs" },
+  "item.label.Get Started": { "message": "Schnellstart", "description": "Navbar item with label Get Started" },
+  "item.label.Hardware": { "message": "Hardware", "description": "Navbar item with label Hardware" },
+  "item.label.Articles": { "message": "Artikel", "description": "Navbar item with label Articles" },
+  "item.label.API": { "message": "API", "description": "Navbar item with label API" },
+  "item.label.Flash Tool": { "message": "Flash-Tool", "description": "Navbar item with label Flash Tool" },
+  "item.label.Ladder": { "message": "Rangliste", "description": "Navbar item with label Ladder" },
+  "item.label.Website": { "message": "Website", "description": "Navbar item with label Website" },
+  "logo.alt": { "message": "NMMiner Logo", "description": "The alt text of navbar logo" }
+}

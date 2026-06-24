@@ -1,0 +1,12 @@
+{
+  "title": { "message": "NMMiner", "description": "The title in the navbar" },
+  "item.label.Docs": { "message": "Documentación", "description": "Navbar Docs" },
+  "item.label.Get Started": { "message": "Inicio Rápido", "description": "Navbar Get Started" },
+  "item.label.Hardware": { "message": "Hardware", "description": "Navbar Hardware" },
+  "item.label.Articles": { "message": "Artículos", "description": "Navbar Articles" },
+  "item.label.API": { "message": "API", "description": "Navbar API" },
+  "item.label.Flash Tool": { "message": "Flasheo", "description": "Navbar Flash Tool" },
+  "item.label.Ladder": { "message": "Ranking", "description": "Navbar Ladder" },
+  "item.label.Website": { "message": "Sitio Web", "description": "Navbar Website" },
+  "logo.alt": { "message": "NMMiner Logo", "description": "Logo alt text" }
+}

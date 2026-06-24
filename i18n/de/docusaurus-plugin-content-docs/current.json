@@ -1,0 +1,10 @@
+{
+  "version.label": { "message": "Aktuell", "description": "The label for version current" },
+  "sidebar.wikiSidebar.category.Getting Started": { "message": "Erste Schritte", "description": "Sidebar category Getting Started" },
+  "sidebar.wikiSidebar.category.Hardware": { "message": "Hardware", "description": "Sidebar category Hardware" },
+  "sidebar.wikiSidebar.category.User Guide": { "message": "Benutzerhandbuch", "description": "Sidebar category User Guide" },
+  "sidebar.wikiSidebar.category.Articles": { "message": "Artikel", "description": "Sidebar category Articles" },
+  "sidebar.wikiSidebar.category.API Reference": { "message": "API-Referenz", "description": "Sidebar category API Reference" },
+  "sidebar.wikiSidebar.category.Reference": { "message": "Referenz", "description": "Sidebar category Reference" },
+  "sidebar.wikiSidebar.doc.solo-vs-pool-mining": { "message": "Solo vs. Pool-Mining", "description": "Sidebar doc solo-vs-pool-mining" }
+}

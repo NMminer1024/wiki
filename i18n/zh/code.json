@@ -29,6 +29,10 @@
   "homepage.feature.mon.desc": {
     "message": "浏览器直接打开 NM Monitor 管理矿机；通过 Swarm 菜单一眼看到全局算力；开放 HTTP API 让你自定义 dashboard。"
   },
+  "homepage.version": {
+    "message": "Wiki 版本",
+    "description": "Wiki version label shown at the bottom of the homepage"
+  },
   "theme.ErrorPageContent.title": {
     "message": "页面已崩溃。",
     "description": "The title of the fallback page when the page crashed"

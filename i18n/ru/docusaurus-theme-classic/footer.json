@@ -1,0 +1,21 @@
+{
+  "link.title.Docs": { "message": "Документация", "description": "Footer Docs" },
+  "link.title.Tools": { "message": "Инструменты", "description": "Footer Tools" },
+  "link.title.Community": { "message": "Сообщество", "description": "Footer Community" },
+  "link.title.More": { "message": "Ещё", "description": "Footer More" },
+  "link.item.label.Quick Start": { "message": "Быстрый старт", "description": "Footer Quick Start" },
+  "link.item.label.Hardware": { "message": "Оборудование", "description": "Footer Hardware" },
+  "link.item.label.User Guide": { "message": "Руководство", "description": "Footer User Guide" },
+  "link.item.label.Articles": { "message": "Статьи", "description": "Footer Articles" },
+  "link.item.label.API": { "message": "API", "description": "Footer API" },
+  "link.item.label.Flash Tool": { "message": "Прошивка", "description": "Footer Flash Tool" },
+  "link.item.label.NM Monitor": { "message": "NM Monitor", "description": "Footer NM Monitor" },
+  "link.item.label.Swarm Menu": { "message": "Swarm-меню", "description": "Footer Swarm Menu" },
+  "link.item.label.Ladder": { "message": "Рейтинг", "description": "Footer Ladder" },
+  "link.item.label.Telegram": { "message": "Telegram", "description": "Footer Telegram" },
+  "link.item.label.Email": { "message": "Эл. почта", "description": "Footer Email" },
+  "link.item.label.Website": { "message": "Сайт", "description": "Footer Website" },
+  "link.item.label.FAQ": { "message": "FAQ", "description": "Footer FAQ" },
+  "link.item.label.Glossary": { "message": "Глоссарий", "description": "Footer Glossary" },
+  "copyright": { "message": "Copyright © 2026 NMTech. NMMiner Wiki создан с помощью Docusaurus.", "description": "Footer copyright" }
+}

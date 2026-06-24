@@ -1,0 +1,21 @@
+{
+  "link.title.Docs": { "message": "Documentación", "description": "Footer Docs" },
+  "link.title.Tools": { "message": "Herramientas", "description": "Footer Tools" },
+  "link.title.Community": { "message": "Comunidad", "description": "Footer Community" },
+  "link.title.More": { "message": "Más", "description": "Footer More" },
+  "link.item.label.Quick Start": { "message": "Inicio Rápido", "description": "Footer Quick Start" },
+  "link.item.label.Hardware": { "message": "Hardware", "description": "Footer Hardware" },
+  "link.item.label.User Guide": { "message": "Guía de Usuario", "description": "Footer User Guide" },
+  "link.item.label.Articles": { "message": "Artículos", "description": "Footer Articles" },
+  "link.item.label.API": { "message": "API", "description": "Footer API" },
+  "link.item.label.Flash Tool": { "message": "Flasheo", "description": "Footer Flash Tool" },
+  "link.item.label.NM Monitor": { "message": "NM Monitor", "description": "Footer NM Monitor" },
+  "link.item.label.Swarm Menu": { "message": "Menú Swarm", "description": "Footer Swarm Menu" },
+  "link.item.label.Ladder": { "message": "Ranking", "description": "Footer Ladder" },
+  "link.item.label.Telegram": { "message": "Telegram", "description": "Footer Telegram" },
+  "link.item.label.Email": { "message": "Correo", "description": "Footer Email" },
+  "link.item.label.Website": { "message": "Sitio Web", "description": "Footer Website" },
+  "link.item.label.FAQ": { "message": "FAQ", "description": "Footer FAQ" },
+  "link.item.label.Glossary": { "message": "Glosario", "description": "Footer Glossary" },
+  "copyright": { "message": "Copyright © 2026 NMTech. Wiki NMMiner creado con Docusaurus.", "description": "Footer copyright" }
+}
