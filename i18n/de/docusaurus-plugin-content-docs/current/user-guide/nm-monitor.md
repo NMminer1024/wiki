@@ -1,68 +1,39 @@
 ---
-sidebar_position: 6
+sidebar_position: 8
 title: NM Monitor
 ---
 
 # NM Monitor
 
-Die webbasierte Verwaltungsoberfläche — läuft direkt auf Ihrem Miner.
+**NM Monitor** ist eine Web-App, die **in jedem NMMiner-Gerät steckt**. Es gibt nichts auf Ihrem Telefon oder PC zu installieren — öffnen Sie die IP des Miners in einem beliebigen Browser und Sie sind drin. Alle Überwachung und Flottenverwaltung läuft über NM Monitor und sein [Swarm](./swarm.md)-Menü.
 
-## Zugriff auf NM Monitor
+## NM Monitor öffnen
 
-1. Stellen Sie sicher, dass sich Ihr Gerät im **selben Netzwerk** wie der Miner befindet
-2. Öffnen Sie einen Browser und gehen Sie zu `http://<miner-ip>`
-3. Alternativ verwenden Sie den Hostnamen: `http://nm-xxxxxx.local`
+1. Verbinden Sie Ihr Telefon oder Ihren PC mit dem **selben WiFi** wie der Miner.
+2. Finden Sie die IP des Miners — am einfachsten über die **Miner-Seite** auf dem Gerätebildschirm (die IP wird in der Statusleiste angezeigt). Alternativ schlagen Sie sie in der DHCP-Tabelle Ihres Routers nach.
+3. Öffnen Sie `http://<miner-ip>/` in **Chrome, Edge, Safari oder Firefox**. Kein Port zu merken — Port 80.
+4. Die Startseite lädt automatisch.
 
 :::tip
-Sie finden die IP-Adresse des Miners auf der **System**-Seite des Gerätedisplays.
+Setzen Sie ein Lesezeichen auf `http://<miner-hostname>/` (z. B. `http://nm-cyd-c5-ab12cd/`) — die meisten Heimrouter lassen Sie den Miner auch über den Hostnamen erreichen.
 :::
 
-## Funktionen
+## Was Sie in NM Monitor tun können
 
-### Dashboard
-- Live-Hashrate-Diagramm (Aktualisierung alle 2 s)
-- Akzeptierte/abgelehnte Share-Zähler
-- Beste Share-Difficulty (Sitzung & aller Zeiten)
-- Pool-Verbindungsstatus
-- Betriebszeit
+| Bereich              | Zweck                                                          |
+| -------------------- | ---------------------------------------------------------------- |
+| **Dashboard**        | Live-Hashrate, akzeptierte / abgelehnte Shares, Pool-Diff, Betriebszeit, RSSI, freier Heap, Temperatur (wo unterstützt). |
+| **Swarm**            | LAN-weite Aggregation: jeden NMMiner im selben WiFi sehen, Hashrate summieren, einen bestimmten Miner anpingen, um ihn blinken zu lassen. Siehe [Swarm](./swarm.md). |
+| **Network**          | Hostname, WiFi-SSID, WiFi-Passwort ändern.                       |
+| **Mining**           | Primäre / Fallback-Pool-URL, Wallet-Adresse, Pool-Passwort.      |
+| **Time**             | Zeitzone, Zeitformat (12 / 24 h), Datumsformat.                  |
+| **Preferences**      | Bildschirmhelligkeit, Rotation, LED aktivieren, Bildschirmschoner-Timeout, Bildschirmschoner-Modus (Bild / Schwarz), [Ladder](./ladder.md)-Opt-in. |
+| **Market**           | Hauptcoin und die auf der Preis-Seite angezeigte Watchlist auswählen.   |
+| **Weather**          | Stadt / Breite / Länge und die von der Wetter-Seite verwendeten Einheiten festlegen. |
+| **Screensaver**      | Benutzerdefinierte PNGs hochladen, die im Browser konvertiert und an den Miner übertragen werden. |
+| **System**           | Firmware-Version, Board, freier Heap, **Restart**-Schaltfläche.          |
+| **API Doc**          | Live-HTTP-API-Referenz (auch unter `/api-doc` veröffentlicht).          |
 
-### Einstellungen
-- **Netzwerk**: Hostname, WLAN-SSID/-Passwort
-- **Mining**: Pool-URLs, Wallet-Adressen, Worker-Passwörter
-- **Anzeige**: Helligkeit, Rotation, Bildschirmschoner, LED
-- **Zeit**: Zeitzone, Zeit-/Datumsformat
-- **Markt**: Hauptcoin, Watchlist, Diagrammoptionen
-- **Wetter**: Stadt, Temperatur-/Geschwindigkeitseinheiten
-- **Lizenz**: Lizenzschlüssel aktivieren
+## Überall in Ihrem LAN lesen
 
-### Swarm
-Das **Swarm-Menü** (linke Seitenleiste) zeigt alle NMMiner-Geräte in Ihrem lokalen Netzwerk:
-
-- Gesamte LAN-Hashrate
-- Individuelle Miner-Statistiken
-- Schnelles Umschalten zwischen Minern
-- Massenoperationen (Einstellungen übertragen, Neustart aller)
-
-Weitere Details finden Sie unter [Swarm](./swarm.md).
-
-### Bildschirmschoner
-- Laden Sie benutzerdefinierte Bilder hoch (PNG, JPG)
-- Konvertiert automatisch in das `.ss`-Format des Geräts
-- Verwalten Sie vorhandene Bildschirmschoner (löschen, neu anordnen)
-- Vorschau vor dem Hochladen
-
-Weitere Details finden Sie unter [Bildschirmschoner](./screen-saver.md).
-
-## Funktionsweise
-
-NM Monitor ist eine **Single-Page-Anwendung** (SPA), die direkt vom ESP32 bereitgestellt wird. Wenn Sie `http://<miner-ip>` öffnen:
-
-1. Der ESP32 sendet die SPA-HTML/JS/CSS-Dateien
-2. Die SPA läuft in Ihrem Browser
-3. Alle API-Aufrufe gehen zurück zum ESP32 auf Port 80
-
-Dies bedeutet:
-- ✅ Keine Cloud-Abhängigkeit — funktioniert auch ohne Internet
-- ✅ Keine Installation — nur ein Browser erforderlich
-- ✅ Sicher — alles bleibt in Ihrem LAN
-- ❌ Sie müssen sich im selben Netzwerk wie der Miner befinden
+NM Monitor setzt `Access-Control-Allow-Origin: *` auf jeden API-Endpunkt. Das bedeutet, eine von einem beliebigen Origin bereitgestellte Browserseite kann den Status des Miners lesen — nützlich für den Bau eigener Dashboards. Die vollständige Endpunktmenge ist in [API-Referenz](../api/overview.md) dokumentiert.

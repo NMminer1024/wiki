@@ -1,92 +1,73 @@
 ---
-sidebar_position: 10
-title: Swarm
+sidebar_position: 9
+title: Swarm-Menü
 ---
 
-# Swarm
+# Swarm-Menü
 
-Die Swarm-Funktion erkennt alle NMMiner-Geräte in Ihrem lokalen Netzwerk und bietet aggregierte Steuerung und Überwachung.
+Das **Swarm**-Menü in [NM Monitor](./nm-monitor.md) lässt Sie **jeden NMMiner im selben LAN** von einer einzigen Browserseite aus sehen und verwalten — mit **null Installation**.
 
-## Was ist Swarm?
+Ein einzelnes /24-Subnetz kann bis zu **255 Geräte** beherbergen, die über Swarm auffindbar sind — problemlos genug für ein ernsthaftes Heim-/Lab-Deployment.
 
-Swarm ist ein **Peer-Discovery-System** — jeder Miner scannt das lokale /24-Subnetz und pflegt eine Liste anderer NMMiner-Geräte. Kein zentraler Server erforderlich.
+## So funktioniert es (Benutzeransicht)
 
-## Auf Swarm zugreifen
-
-1. Öffnen Sie `http://<beliebiger-miner-ip>` in Ihrem Browser
-2. Klicken Sie auf das **Swarm**-Symbol in der linken Seitenleiste
-3. Das Swarm-Panel zeigt alle erkannten Miner an
-
-## Funktionen
-
-### Aggregierte Statistiken
-- **Gesamte LAN-Hashrate**: Summe aller Miner
-- **Gesamt aktive Miner**: Anzahl mit Hashrate > 0
-- **Gesamt akzeptierte Shares**: Netzwerkweit
-- **Gesamt abgelehnte Shares**: Netzwerkweit
-
-### Individuelle Miner-Karten
-Jeder Miner zeigt:
-- Hostname & IP-Adresse
-- Aktuelle Hashrate
-- Akzeptierte/abgelehnte Shares
-- Beste Share-Diff
-- Betriebszeit
-- Pool-Verbindungsstatus
-
-### Aktionen
-| Aktion                 | Beschreibung                                                 |
-| ---------------------- | ------------------------------------------------------------ |
-| **Miner auswählen**    | Klicken Sie auf einen Miner, um seinen NM Monitor zu öffnen  |
-| **Alle neustarten**    | Senden Sie `/api/system/restart` an jeden Miner              |
-| **Standortsuche**      | Lassen Sie die LED eines bestimmten Miners blinken (physische Identifikation) |
-| **Einstellungen übertragen** | Kopieren Sie Mining-/Netzwerk-Einstellungen auf mehrere Miner |
-
-## Funktionsweise
+1. Sie öffnen NM Monitor auf **irgendeinem** Miner (oder einem beliebigen Gerät, das das LAN erreichen kann).
+2. Das Swarm-Menü führt einen schnellen LAN-Sweep durch.
+3. Jeder erreichbare NMMiner erscheint als Zeile.
+4. NM Monitor summiert deren Hashraten, listet ihre Pools und lässt Sie jeden anpingen.
 
 ```mermaid
-sequenceDiagram
-    participant Browser
-    participant MinerA as Miner A (Seed)
-    participant MinerB as Miner B
-    participant MinerC as Miner C
+flowchart LR
+    you([Your browser])
+    m1[NMMiner A]
+    m2[NMMiner B]
+    m3[NMMiner C]
+    m4[NMMiner D]
 
-    Browser->>MinerA: GET /alive
-    MinerA->>MinerA: Scan 192.168.1.0/24
-    MinerA->>MinerB: GET /probe
-    MinerA->>MinerC: GET /probe
-    MinerB-->>MinerA: {model:"NMMiner",...}
-    MinerC-->>MinerA: {model:"NMMiner",...}
-    MinerA-->>Browser: ips: [A, B, C]
-    Browser->>MinerA: GET /api/system/info
-    Browser->>MinerB: GET /api/system/info
-    Browser->>MinerC: GET /api/system/info
+    you -- HTTP --> m1
+    m1 -. LAN discovery .-> m2
+    m1 -. LAN discovery .-> m3
+    m1 -. LAN discovery .-> m4
+    m2 -- /probe --> you
+    m3 -- /probe --> you
+    m4 -- /probe --> you
 ```
 
-1. Ihr Browser ruft `/alive` auf einem beliebigen Miner (dem „Seed") auf
-2. Dieser Miner gibt jede NMMiner-IP zurück, die er im LAN gefunden hat
-3. Der Browser ruft dann `/probe` und `/api/system/info` auf jedem aufgelisteten Miner auf
-4. Das Swarm-Panel zeigt alle Ergebnisse in Echtzeit an
+Der Browser übernimmt die Aggregation — kein zentraler Server, keine Cloud, kein Konto.
+
+## Was die Swarm-Tabelle zeigt
+
+| Spalte          | Bedeutung                                                                |
+| --------------- | ---------------------------------------------------------------------- |
+| **Hostname**    | Der Hostname des Miners (den Sie auf der Network-Seite festlegen).               |
+| **IP**          | Die LAN-IP des Miners.                                                    |
+| **Version**     | Vom Miner gemeldete Firmware-Version.                                |
+| **Hashrate**    | Aktuelle Hashrate in H/s.                                               |
+| **Session Best**| Beste Share-Schwierigkeit seit dem letzten Boot des Miners.                     |
+| **Ever Best**   | Beste Share-Schwierigkeit über alle Sitzungen.                             |
+| **Uptime**      | Sekunden seit dem Boot.                                                    |
+| **Find**        | Eine Schaltfläche, die Bildschirm + LED des Miners aufblitzen lässt, damit Sie ihn physisch lokalisieren können. |
+
+Eine Fußzeile summiert die Hashrate des gesamten Schwarms, sodass Sie Ihre gesamte LAN-Hashrate auf einen Blick sehen. Während ein Scan läuft, zeigt NM Monitor auch eine **Fortschrittsleiste** (hinzugefügt in v2.0.03).
+
+## Häufige Aufgaben
+
+### Einen bestimmten Miner physisch finden
+
+1. Öffnen Sie Swarm.
+2. Klicken Sie auf die **Find**-Schaltfläche der Zielzeile.
+3. Der ausgewählte Miner lässt Bildschirm und LED einige Sekunden lang aufblitzen — gehen Sie hin und holen Sie ihn.
+
+Das ist nur ein einzelner HTTP-Aufruf ([`POST /api/swarm/find`](../api/swarm-find.md)) — Sie können ihn auch aus Ihren eigenen Skripten auslösen.
+
+### Miner auf einen Blick vergleichen
+
+Sortieren Sie die Tabelle nach **Hashrate**, **Session Best** oder **Uptime**, um zu sehen, welches Board am besten läuft.
+
+### LAN erneut scannen
+
+Das Swarm-Menü aktualisiert sich von selbst, wenn Sie es öffnen. Um einen sofortigen erneuten Scan zu erzwingen, verlassen Sie das Menü und kehren zurück, oder laden Sie die Seite neu.
 
 :::tip
-**Der Seed-Miner muss auf der Miner-Seite sein** (oder das Swarm-Panel geöffnet haben), damit die Discovery aktiv bleibt. Wenn Sie zu einer anderen Seite wechseln, pausiert die Discovery.
+Möchten Sie Ihr eigenes Dashboard bauen? Jede Spalte der Swarm-Tabelle bildet sich direkt auf einen öffentlichen HTTP-Endpunkt ab. Siehe [API-Referenz › Discovery](../api/discovery.md).
 :::
-
-## Einstellungen übertragen
-
-So übertragen Sie Mining-Einstellungen auf mehrere Miner:
-
-1. Öffnen Sie das Swarm-Panel
-2. Klicken Sie auf **Einstellungen übertragen**
-3. Wählen Sie die Zielempfänger-Miner aus
-4. Wählen Sie die zu kopierenden Einstellungen (Pool, Netzwerk, Präferenzen)
-5. Klicken Sie auf **Übernehmen**
-
-Massenoperationen sind auch über die API verfügbar — siehe [Beispiele](../api/examples.md).
-
-## Einschränkungen
-
-- Funktioniert nur innerhalb eines einzelnen **/24-Subnetzes** (255.255.255.0)
-- Die Discovery pausiert, wenn kein Miner auf der Miner-Seite ist
-- Geräte müssen Port 80 füreinander erreichbar sein (Standard-LAN-Setup)
-- VLANs oder Client-Isolation in Unternehmensnetzwerken verhindern die Discovery

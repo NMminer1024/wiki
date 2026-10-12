@@ -5,54 +5,24 @@ title: Schnellstart
 
 # Schnellstart
 
-Bringen Sie ein ESP32-Board in etwa 5 Minuten zum Mining.
+Bringen Sie ein frisches ESP32-Board in **etwa 10 Minuten** zum Hashing.
 
-## 1. Wählen Sie ein Board
+## Was Sie benötigen
 
-NMMiner unterstützt über 30 verschiedene ESP32-Boards. Siehe [Hardware-Übersicht](../hardware/overview.md) für die vollständige Liste.
+- Ein [offiziell unterstütztes Board](../hardware/overview.md) (ESP32-D0 / S3 / C3 / C5).
+- Ein USB-Kabel und einen PC mit **Chrome** oder **Edge** (für das browserbasierte Flash-Tool).
+- Ein 2,4-GHz-WiFi-Netzwerk.
 
-Die beliebtesten Einstiegsboards:
-- **ESP32-DevKitC** (ESP32-D0) — ~1.035 KH/s, günstig und weit verbreitet
-- **ESP32-S3-DevKitC** (ESP32-S3) — ~400 KH/s, neuerer Chip
-- **ESP32-C3-DevKitM** (ESP32-C3) — ~402 KH/s, sehr stromsparend
+Sie **benötigen keine Wallet**, um loszulegen — NMMiner wird mit unserem eigenen SoloBTC-Pool ([solobtc.nmminer.com](https://solobtc.nmminer.com)) und einer temporären Demo-Wallet vorkonfiguriert ausgeliefert. Ersetzen Sie die Wallet durch Ihre eigene BTC-Adresse, wann immer Sie bereit sind.
 
-## 2. Firmware flashen
+## Die fünf Schritte
 
-1. Besuchen Sie das [NMMiner Flash Tool](https://flash.nmminer.com)
-2. Verbinden Sie Ihr Board per USB mit dem Computer
-3. Wählen Sie Ihr Board-Modell und den seriellen Port aus
-4. Klicken Sie auf **Flash**
+1. **Firmware flashen** — öffnen Sie [flash.nmminer.com](https://flash.nmminer.com), wählen Sie Ihr Board und klicken Sie auf *Install*. Siehe [Firmware flashen](./flash-firmware.md).
+2. **Lizenz erwerben & aktivieren** — das Flash-Tool führt Sie durch den Lizenzkauf; fügen Sie die Lizenz-Zeichenfolge anschließend in das Aktivierungsfeld ein. Siehe [Lizenz aktivieren](./activate-licence.md).
+3. **Verbinden Sie sich mit dem AP `nmap-2.4g`** mit Ihrem Telefon. Das Captive-Portal öffnet sich automatisch. PCs: Besuchen Sie `http://192.168.4.1` manuell.
+4. **Konfigurieren** Sie WiFi (obligatorisch) und Wallet (empfohlen) auf der Webseite und drücken Sie dann **Speichern**. Der Miner startet in ~15 Sekunden neu. Siehe [Erste Konfiguration](./first-configuration.md).
+5. **Beobachten Sie das Mining** — die Miner-Seite auf dem Bildschirm zeigt Live-Hashrate, akzeptierte Shares und Pool-Diff. Besuchen Sie [solobtc.nmminer.com](https://solobtc.nmminer.com), um Ihren Worker im Pool-Dashboard erscheinen zu sehen.
 
-Detaillierte Anweisungen finden Sie unter [Firmware flashen](./flash-firmware.md).
-
-## 3. Mit dem WLAN-Portal verbinden
-
-Nach dem Flashen startet das Board einen WLAN-Hotspot namens **`NMMiner-Setup`**.
-
-1. Verbinden Sie Ihr Telefon oder Ihren PC mit diesem WLAN
-2. Ein Captive-Portal öffnet sich automatisch
-3. Wenn nicht, öffnen Sie einen Browser und gehen Sie zu `http://192.168.4.1`
-
-Lesen Sie mehr unter [Erste Konfiguration](./first-configuration.md).
-
-## 4. Mining starten
-
-Das Board ist vorkonfiguriert, um mit dem **SoloBTC Pool von NMMiner** zu minen. Es beginnt sofort zu hashen, sobald:
-
-- WLAN-Zugangsdaten gespeichert sind
-- Eine Wallet-Adresse gesetzt ist (Standardeinstellung funktioniert für erste Tests)
-
-## 5. Ihre Miner überwachen
-
-- Auf dem **Gerätedisplay**: Live-Hashrate, Shares, Pool-Status
-- Im **Browser**: Öffnen Sie `http://<miner-ip>` für [NM Monitor](../user-guide/nm-monitor.md)
-- **Ganze Flotte**: Verwenden Sie das [Swarm-Menü](../user-guide/swarm.md)
-
-## Nächste Schritte
-
-| Sie möchten…                              | Gehen Sie zu                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------- |
-| Mehrere Boards kaufen                      | [Hardware-Übersicht](../hardware/overview.md)                       |
-| Pool wechseln                              | [Pools-Konfiguration](../user-guide/pools.md)                       |
-| Globalen Ranglisten-Beitritt verwalten     | [Ladder](../user-guide/ladder.md)                                   |
-| Verstehen, wie das alles funktioniert      | [Wie Mining funktioniert](../how-mining-works/bitcoin-mining-basics.md) |
+:::tip
+Beim ersten Einschalten versucht der Miner 15 Sekunden lang, sich erneut mit dem zuletzt bekannten WiFi zu verbinden. Schlägt dies fehl, wechselt er automatisch in den AP-/Konfigurationsmodus zurück.
+:::

@@ -16,3 +16,32 @@ title: Swarm Find
 본문 없음.
 
 ### 응답
+
+```json
+{ "status": "ok" }
+```
+
+대상 마이너는:
+
+- 몇 초 동안 화면을 깜빡입니다.
+- LED를 깜빡입니다(활성화된 경우).
+
+### 예시 — bash
+
+```bash
+curl -X POST http://192.168.1.43/api/swarm/find
+```
+
+### 예시 — Python
+
+```python
+import requests
+
+for ip in ["192.168.1.43", "192.168.1.44", "192.168.1.45"]:
+    requests.post(f"http://{ip}/api/swarm/find")
+    print(f"pinged {ip}")
+```
+
+:::tip
+[`GET /alive`](./discovery.md#get-alive)와 결합하여 모든 IP를 가져온 후 순회하세요 — 홈 대시보드의 "모든 마이너 찾기" 버튼에 완벽합니다.
+:::

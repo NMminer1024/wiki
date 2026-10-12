@@ -3,9 +3,9 @@ sidebar_position: 10
 title: Swarm Find
 ---
 
-# Swarm Find
+# Swarm — Find Me
 
-Lässt die LED eines Miners blinken, damit Sie ihn physisch in einem Regal oder Rack lokalisieren können.
+Löst eine visuelle und LED-Anzeige auf dem Ziel-Miner aus, damit Sie ihn physisch lokalisieren können. Dies ist die API hinter der **Find**-Schaltfläche im [Swarm](../user-guide/swarm.md)-Menü.
 
 ---
 
@@ -17,25 +17,31 @@ Kein Body.
 
 ### Response
 
-```
-HTTP/1.1 200 OK
-Content-Type: text/plain
-
-Flashing LED for 10 seconds.
+```json
+{ "status": "ok" }
 ```
 
-Die Status-LED (oder Bildschirm, falls keine LED vorhanden) blinkt **10 Sekunden lang** mit einem erkennbaren Muster. Nur ein Miner antwortet — der, dessen IP Sie aufrufen.
+Der Ziel-Miner wird:
 
-### Beispiel
+- seinen Bildschirm einige Sekunden lang aufblitzen lassen.
+- seine LED blinken lassen (falls aktiviert).
+
+### Beispiel — bash
 
 ```bash
-# Lassen Sie jeden Miner im LAN blinken — gehen Sie herum und finden Sie sie
-for ip in $(curl -s http://192.168.1.42/alive | jq -r '.ips[]'); do
-  curl -X POST "http://${ip}/api/swarm/find" &
-done
+curl -X POST http://192.168.1.43/api/swarm/find
 ```
 
-### Hinweise
+### Beispiel — Python
 
-- Mehrere gleichzeitige `/api/swarm/find`-Aufrufe sind in Ordnung — jeder Miner blinkt unabhängig.
-- Verwenden Sie dies aus dem Swarm-Menü von NM Monitor oder aus Ihrem eigenen Skript.
+```python
+import requests
+
+for ip in ["192.168.1.43", "192.168.1.44", "192.168.1.45"]:
+    requests.post(f"http://{ip}/api/swarm/find")
+    print(f"pinged {ip}")
+```
+
+:::tip
+Kombinieren Sie dies mit [`GET /alive`](./discovery.md#get-alive), um jede IP zu erhalten, und iterieren Sie dann darüber — perfekt für eine „Alle meine Miner finden"-Schaltfläche auf Ihrem Home-Dashboard.
+:::

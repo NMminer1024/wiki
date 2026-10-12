@@ -5,44 +5,16 @@ title: Firmware flashen
 
 # Firmware flashen
 
-So flashen Sie die NMMiner-Firmware auf Ihr ESP32-Board.
+NMMiner wird als einzelnes, im Browser flashbares Image ausgeliefert. Kein `esptool` oder `idf.py` erforderlich.
 
-## Web Flash Tool (empfohlen)
+## Flashen im Browser (empfohlen)
 
-Der einfachste Weg — kein Treiber oder Terminal erforderlich.
+1. Öffnen Sie [flash.nmminer.com](https://flash.nmminer.com) in **Chrome oder Edge**. Firefox / Safari implementieren WebSerial nicht.
+2. Schließen Sie Ihr Board per USB an.
+3. Wählen Sie Ihr Board aus der Liste. Das Tool holt die passende Firmware aus dem offiziellen GitHub-Release.
+4. Klicken Sie auf **Install**, wählen Sie den seriellen Port und warten Sie auf „Flash complete".
+5. Das Tool fordert Sie auf, **eine Lizenz zu erwerben**. Nach dem Kauf zeigt es Ihre Lizenz-Zeichenfolge an — kopieren Sie sie. Sie benötigen sie einmal auf der Aktivierungsseite.
 
-1. **Öffnen** Sie [flash.nmminer.com](https://flash.nmminer.com) in Chrome oder Edge (Firefox und Safari unterstützen WebSerial nicht).
-2. **Verbinden** Sie Ihr ESP32-Board per USB-Kabel mit dem Computer.
-3. **Wählen** Sie Ihr Board-Modell aus dem Dropdown-Menü.
-4. **Klicken** Sie auf „Verbinden" und wählen Sie den seriellen Port Ihres Boards.
-5. **Klicken** Sie auf „Flash" und warten Sie, bis der Fortschrittsbalken 100 % erreicht.
-
-:::tip
-Wenn Ihr Board nicht erkannt wird, müssen Sie möglicherweise den CP210x- oder CH340-Treiber installieren. Siehe die [Hardware](../hardware/overview.md)-Seite für Ihr spezifisches Board.
+:::warning
+Wenn Ihr Board nicht automatisch in den Download-Modus wechselt, halten Sie `BOOT` gedrückt, während Sie `RESET` drücken, und lassen Sie dann los.
 :::
-
-## Manuelles Flashen (esptool)
-
-Wenn Sie die Kommandozeile bevorzugen:
-
-```bash
-# ESP32-D0
-esptool.py --chip esp32 --port COM3 --baud 921600 write_flash 0x0 firmware.bin
-
-# ESP32-S3
-esptool.py --chip esp32s3 --port COM3 --baud 921600 write_flash 0x0 firmware.bin
-
-# ESP32-C3
-esptool.py --chip esp32c3 --port COM3 --baud 921600 write_flash 0x0 firmware.bin
-
-# ESP32-C5
-esptool.py --chip esp32c5 --port COM3 --baud 921600 write_flash 0x0 firmware.bin
-```
-
-Laden Sie die neueste Firmware von der [NMMiner Website](https://www.nmminer.com) herunter.
-
-## Nach dem Flashen
-
-1. Das Board startet neu und erstellt einen WLAN-Hotspot namens **`NMMiner-Setup`**.
-2. Fahren Sie mit [Erste Konfiguration](./first-configuration.md) fort, um WLAN und Wallet einzurichten.
-3. Das Mining beginnt automatisch.

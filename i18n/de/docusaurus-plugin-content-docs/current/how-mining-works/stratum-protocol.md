@@ -5,85 +5,67 @@ title: Stratum-Protokoll
 
 # Stratum-Protokoll
 
-Das Stratum-Protokoll ist die Art und Weise, wie Miner mit Mining-Pools kommunizieren. NMMiner implementiert **Stratum v1** über TCP (und TLS).
+**Stratum v1** ist das De-facto-Protokoll, das Bitcoin-Mining-Pools verwenden, um mit Minern zu sprechen. NMMiner ist ein Stratum-v1-Client.
 
-## Protokollablauf
+> Diese Seite dokumentiert nur die **öffentlichen, allgemein bekannten** Stratum-Nachrichten, die jeder Pool versteht. Pool-spezifische Erweiterungen und interne Implementierungsdetails sind außerhalb des Rahmens.
+
+## Verbindung
+
+- **Transport**: TCP, oder TLS-verpacktes TCP für SSL-Pools.
+- **Adressschema**:
+  - `stratum+tcp://host:port` — einfaches TCP.
+  - `stratum+ssl://host:port` — TLS.
+- **Worker-Identität**: die Wallet-Adresse, optional gefolgt von `.workerName`, z. B. `bc1q....workerName`.
+
+Der Miner hält den Socket für die gesamte Sitzung offen. Wenn der Pool ihn schließt, verbindet NMMiner sich automatisch neu.
+
+## Nachrichtenfluss
 
 ```mermaid
 sequenceDiagram
-    participant M as Miner (ESP32)
-    participant P as Pool Server
+    autonumber
+    participant Miner as NMMiner
+    participant Pool as Stratum Pool
 
-    M->>P: mining.subscribe (Benutzeragent + Session-ID)
-    P->>M: subscription details + extranonce
-    M->>P: mining.authorize (Wallet.Worker + Passwort)
-    P->>M: authorized = true
-    loop Mining-Loop
-        P->>M: mining.notify (Job: prevhash, coinbase, merkle, version, nbits, ntime)
-        M->>M: Hashen... finden von Shares die das Pool-Ziel erreichen
-        M->>P: mining.submit (Job-ID, Nonce, Extranonce2, ntime)
+    Miner->>Pool: mining.subscribe
+    Pool-->>Miner: extranonce1, extranonce2_size
+    Miner->>Pool: mining.authorize (wallet.worker, password)
+    Pool-->>Miner: true / false
+    Pool-->>Miner: mining.set_difficulty (share_diff)
+    Pool-->>Miner: mining.notify (job_id, prevhash, coinb1, coinb2, merkle, version, nbits, ntime, clean_jobs)
+    loop While mining
+        Miner->>Miner: search nonce space against job
+        alt Found a share
+            Miner->>Pool: mining.submit (worker, job_id, extranonce2, ntime, nonce)
+            Pool-->>Miner: true (accepted) / false (rejected)
+        end
+        Pool-->>Miner: mining.set_difficulty (updated diff, occasional)
+        Pool-->>Miner: mining.notify (new job, periodically)
     end
 ```
 
-## Schlüsselmethoden
+## Was jede Nachricht für Sie bedeutet
 
-### `mining.subscribe`
+| Nachricht                   | Einfache Bedeutung                                                       |
+| ------------------------- | ------------------------------------------------------------------- |
+| `mining.subscribe`        | „Hallo, ich möchte Arbeit."                                                  |
+| `mining.authorize`        | „Ich bin diese Wallet."                                                 |
+| `mining.set_difficulty`   | Der Pool legt fest, wie leicht / schwer eine Share sein muss. Die NMMiner-Diff ist **winzig**. |
+| `mining.notify`           | „Hier ist eine neue Blockvorlage zum Bearbeiten." Alte Jobs sind veraltet.   |
+| `mining.submit`           | „Hier ist ein Hash, der die Diff erfüllt."                               |
 
-Der Miner meldet sich an und erhält:
-- Eine **Session-ID**
-- Einen **Extranonce1**-Wert (vom Pool zur Erweiterung des Nonce-Bereichs)
-- Die **Extranonce2-Größe** (wie viele Bytes der Miner selbst anhängen soll)
+Das ist alles, was es von der Miner-Seite her zum Protokoll gibt.
 
-### `mining.authorize`
+## Was NMMiner auf dem Bildschirm / in NM Monitor anzeigt
 
-Sendet die Anmeldeinformationen des Workers:
-- `username` = `wallet_address.worker_name`
-- `password` = normalerweise `x` (die meisten Pools ignorieren dies)
+| Feld            | Stammt aus                                              |
+| ---------------- | ------------------------------------------------------- |
+| **Pool**         | Die konfigurierte URL (Host und Port).                     |
+| **Diff**         | Neuestes `mining.set_difficulty`.                         |
+| **Accepted**     | Anzahl der `true`-Antworten auf `mining.submit`.             |
+| **Rejected**     | Anzahl der `false`-Antworten auf `mining.submit`.            |
+| **Session Best** | Die Share mit der höchsten Schwierigkeit, die diesen Boot erzeugt wurde.        |
+| **Ever Best**    | Die Share mit der höchsten Schwierigkeit, die über alle Boots erzeugt wurde. |
+| **Hashrate**     | Interner gleitender Durchschnitt der Hashes pro Sekunde.           |
 
-### `mining.notify`
-
-Der Pool sendet einen neuen **Job** mit:
-- `job_id` — Eindeutiger Bezeichner für diesen Job
-- `prevhash` — Hash des vorherigen Blocks
-- `coinb1` + `coinb2` — Coinbase-Transaktionsteile
-- `merkle_branch` — Merkle-Pfad zur Coinbase
-- `version` — Blockversion
-- `nbits` — Codiertes Schwierigkeitsziel
-- `ntime` — Aktueller Zeitstempel
-- `clean_jobs` — Wenn `true`, verwerfen Sie alle vorherigen Jobs
-
-### `mining.submit`
-
-Der Miner reicht eine gefundene Share ein mit:
-- `user` — Worker-Name
-- `job_id` — Welcher Job bearbeitet wurde
-- `extranonce2` — Der vom Miner gewählte Nonce-Teil
-- `ntime` — Vom Miner verwendeter Zeitstempel
-- `nonce` — Der 32-Bit-Nonce, der die Share ausgelöst hat
-
-## Verbindungsmodi
-
-NMMiner unterstützt zwei Stratum-Transporte:
-
-| Schema           | Port (typisch) | Beschreibung                  |
-| ---------------- | -------------- | ----------------------------- |
-| `stratum+tcp://` | 3333           | Klartext-Stratum              |
-| `stratum+ssl://` | 3333           | TLS-verschlüsseltes Stratum   |
-
-## Diffizile Skalierung
-
-Die Share-Schwierigkeit des Pools bestimmt, wie oft Sie Shares einreichen:
-
-| Pool-Diff | Shares/Minute (bei 1 MH/s) | Netzwerklast |
-| --------- | -------------------------- | ------------ |
-| 0,001     | ~7/Min                     | Hoch         |
-| 0,01      | ~0,7/Min                   | Mittel       |
-| 0,1       | ~0,07/Min (alle 14 Min)    | Niedrig      |
-| 1,0       | ~0,007/Min (alle 2,4 Std)  | Sehr niedrig |
-
-Die Diffizile wird normalerweise vom Pool automatisch basierend auf Ihrer Hashrate angepasst.
-
-## Referenzen
-
-- [Stratum V1 Spezifikation](https://en.bitcoin.it/wiki/Stratum_mining_protocol) (Bitcoin Wiki)
-- [Stratum V2 Entwurf](https://stratumprotocol.org/) — NMMiner unterstützt derzeit kein V2
+Siehe auch: [Pool-Liste](../reference/pool-list.md) für bekannte kompatible Endpunkte.

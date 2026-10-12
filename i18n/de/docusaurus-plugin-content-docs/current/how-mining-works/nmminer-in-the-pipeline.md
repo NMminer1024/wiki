@@ -5,52 +5,53 @@ title: NMMiner in der Pipeline
 
 # NMMiner in der Pipeline
 
-Wo NMMiner in die breitere Bitcoin-Mining-Pipeline passt und warum das wichtig ist.
+Eine Black-Box-Ansicht dessen, was auf dem Gerät zwischen „WiFi verbunden" und „Share akzeptiert" passiert.
 
-## Die Mining-Pipeline
+## End-to-End-Bild
 
 ```mermaid
 flowchart LR
-    A[Bitcoin-Netzwerk] --> B[Pool-Server]
-    B --> C[Stratum über TCP/SSL]
-    C --> D[NMMiner auf ESP32]
-    D --> E[ASIC-Chip / SHA256-Engine]
-    E --> F[Nichtflüchtiger Speicher]
+    subgraph Device["NMMiner device"]
+        rcv["Receive job<br/>from pool"]
+        search["Search the<br/>nonce space"]
+        check["Compare<br/>to share diff"]
+        submit["Submit share<br/>to pool"]
+    end
+
+    pool[("Bitcoin Stratum Pool")]
+    pool -- mining.notify --> rcv
+    rcv --> search
+    search --> check
+    check -- meets diff --> submit
+    check -- below diff --> search
+    submit -- mining.submit --> pool
+    pool -- accepted / rejected --> submit
 ```
 
-## Worauf NMMiner sich konzentriert
+## Was Sie als Betreiber steuern können
 
-| Schicht              | Tut NMMiner? | Details                                             |
-| -------------------- | ------------ | --------------------------------------------------- |
-| Mining-Pool-Betrieb  | ✅ Ja        | Der SoloBTC-Pool ist Teil des NMMiner-Ökosystems     |
-| Stratum-Client       | ✅ Ja        | Vollständige Stratum-v1-Implementierung              |
-| SHA256-Hashing       | ✅ Ja        | Optimierte ESP32-Assembly (+ Hardware-SHA für einige Chips) |
-| Block-Template-Erstellung | ❌ Nein  | Wird vom Pool-Server übernommen                      |
-| Transaktionsauswahl  | ❌ Nein      | Wird vom Pool-Server übernommen                      |
-| Belohnungsverteilung | ❌ Nein      | Wird vom Pool-Server übernommen (außer solo)         |
+| Drehknopf                         | Wirkung                                                          |
+| ---------------------------- | --------------------------------------------------------------- |
+| **Pool-URL**                 | Woher Jobs kommen und wohin Shares gehen.                       |
+| **Wallet**                   | Wo die Pool-Auszahlungen landen.                                |
+| **UI-Aktualisierungsrate**   | Höhere Rate → flüssigerer Bildschirm, aber etwas geringere Hashrate. Niedrigere Rate → maximale Hashrate. |
+| **Bildschirmschoner-Modus**  | `Black` entfernt die Display-Neuzeichnungskosten → Spitzenhashrate. |
+| **LED aktivieren**           | Nur kosmetisch.                                                  |
+| **WiFi-Qualität**            | Ein instabiler AP verursacht Fehler beim Share-Senden; die Ablehnungen steigen. |
 
-## Warum ESP32?
+## Was NMMiner während der Arbeit anzeigt
 
-Die ESP32-Familie wird traditionell für IoT verwendet, aber:
+- **Lade-Seite** — Boot, WiFi-Handshake, Ankunft des ersten Jobs.
+- **Miner-Seite** — Live-Hashrate, Share-Zähler, Pool-Diff, Pool-URL, Betriebszeit.
+- **Uhr-/Preis-/Wetter-Seiten** — schreibgeschützte Infoseiten, beeinflussen das Mining nicht.
+- **Swarm-fähige Fußzeile** (auf der Miner-Seite) — wenn die [Swarm](../user-guide/swarm.md)-Funktion aktiv ist, verfolgt der Miner auch die LAN-weite Gesamthashrate.
 
-- **Dual-Core @ 240 MHz** bietet überraschende Rechenleistung
-- **Hardware-SHA-Beschleuniger** auf einigen Chips (S3, C3, C5)
-- **Extrem günstig** — $2-5 pro Board
-- **Geringer Stromverbrauch** (~2,5W bei Volllast)
-- **Riesiges Ökosystem** — einfache Beschaffung, bekannte Tools
+## Was NMMiner **nicht** preisgibt
 
-Ein Regal mit 20 ESP32-Boards (~20 MH/s) verbraucht weniger Strom als ein einzelner Antminer S19 und kostet weniger als $100 in Hardware.
+NMMiner ist Closed-Source-Firmware. Dieses Wiki dokumentiert die **Eingaben**, die **Ausgaben** und das **beobachtbare Verhalten** des Geräts. Es dokumentiert nicht:
 
-## Die SoloBTC-Pool-Architektur
+- Wie die innere SHA-256d-Schleife implementiert ist (dies ist die Kern-Optimierungsarbeit von NMMiner).
+- Das On-Chip-Task-Layout, Speicher-Layout oder den Treiber-Stack.
+- Internes Speicher-Layout, Protokollpuffer oder die Stratum-Parser-Strategie.
 
-NMMiner betreibt seinen eigenen Solo-Mining-Pool unter [solobtc.nmminer.com](https://solobtc.nmminer.com):
-
-- **Solo-Mining-Modell**: Wenn ein NMMiner einen Block findet, erhält er die volle 3,125 BTC-Belohnung.
-- **Keine Gebühren**: Der Pool erhebt keine Pool-Gebühren.
-- **Globale Infrastruktur**: Server in mehreren Regionen für niedrige Latenz.
-
-## Verwandte Themen
-
-- [Bitcoin Mining Grundlagen](./bitcoin-mining-basics.md)
-- [Solo vs. Pool-Mining](./solo-vs-pool-mining.md)
-- [Stratum-Protokoll](./stratum-protocol.md)
+Wenn Sie sich mit dem Gerät integrieren möchten, tun Sie dies über die dokumentierte [HTTP-API](../api/overview.md) — das ist der stabile, unterstützte Vertrag.

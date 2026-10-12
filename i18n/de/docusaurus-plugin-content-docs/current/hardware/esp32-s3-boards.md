@@ -5,26 +5,24 @@ title: ESP32-S3 Boards
 
 # ESP32-S3 Boards
 
-Der ESP32-S3 bietet eine gute Balance aus Rechenleistung (~400 KH/s), mehreren GPIOs und nativer USB-Unterstützung — ideal für farbige Touchscreens.
+Der ESP32-S3 verfügt über zwei Xtensa-LX7-Kerne plus eine SIMD-freundliche Vector-ISA. NMMiner erreicht auf dem S3 Spitzenwerte von **~400 KH/s**.
 
-## Unterstützte Boards
-
-| Board                     | Display              | Hashrate (Standard) | Hashrate (Lizenz) | Hinweise                          |
-| ------------------------- | -------------------- | ------------------- | ----------------- | --------------------------------- |
-| ESP32-S3-DevKitC          | Keines               | ~280 KH/s           | ~400 KH/s         | Einfaches Entwicklungsboard       |
-| CYD (Cheap Yellow Display)| 320×240 TFT + Touch  | ~280 KH/s           | ~400 KH/s         | Beliebteste Budget-Touchscreen-Option |
-| CYD2USB                   | 320×240 TFT + Touch  | ~280 KH/s           | ~400 KH/s         | CYD mit USB-C und besserem Layout |
-| Elecrow ESP32-S3          | 480×272 TFT + Touch  | ~280 KH/s           | ~400 KH/s         | Größeres Display                  |
-| Waveshare ESP32-S3-LCD    | 240×240 TFT          | ~280 KH/s           | ~400 KH/s         | Kompakt, rundes Display           |
-| M5Stack CoreS3            | 320×240 TFT + Touch  | ~280 KH/s           | ~400 KH/s         | Premium-Gehäuse                   |
-
-## Einkaufstipps
-
-- **CYD** („Cheap Yellow Display") ist das beliebteste NMMiner-Board — suchen Sie auf AliExpress nach „ESP32-S3 TFT 2.8inch".
-- CYD2USB hat eine bessere Stromversorgung und USB-C — empfohlen, wenn verfügbar.
-- Erwarten Sie $7-15 für CYD, $15-25 für CYD2USB.
-
-## Bekannte Probleme
-
-- Einige CYD-Boards haben ein **verkehrt herum eingebautes Display** — verwenden Sie `RotateScreen: 180` in den Einstellungen.
-- Die USB-C-Anschlüsse des CYD2USB können wackelig sein — verwenden Sie ein hochwertiges Kabel.
+| Board                                       | Hashrate     | Chip         |
+| ------------------------------------------- | ------------ | ------------ |
+| [Heltec WiFi Kit32 v3](https://heltec.org/project/wifi-kit32-v3/)               | **400.9 KH/s** | ESP32-S3FN8 |
+| [Heltec WiFi LoRa32 v3](https://www.aliexpress.com/item/1005005443005152.html)  | **400.7 KH/s** | ESP32-S3FN8 |
+| [Heltec Wireless Stick Lite v3](https://heltec.org/project/wireless-stick-lite-v2/) | **399.3 KH/s** | ESP32-S3FN8 |
+| [Heltec Wireless Stick v3](https://heltec.org/project/wireless-stick-v3/)       | **398.2 KH/s** | ESP32-S3FN8 |
+| [NM Bot Chain v1](https://www.aliexpress.com/item/1005008096252566.html)         | **393.8 KH/s** | ESP32-S3FN8 |
+| Seeed XIAO ESP32-S3                                                              | **393.7 KH/s** | ESP32-S3FN8 |
+| ESP32-S3 0.42" OLED                                                              | **392.1 KH/s** | ESP32-S3    |
+| LilyGO T-Display S3 AMOLED                                                       | **390.1 KH/s** | ESP32-S3R8  |
+| [Heltec Vision Master T190](https://www.aliexpress.us/item/1005007449552504.html)| **388.4 KH/s** | ESP32-S3R8  |
+| [NM USB Chain v1](https://www.aliexpress.com/item/1005008089478881.html)         | **387.5 KH/s** | ESP32-S3FN8 |
+| LilyGO T-Dongle S3                                                               | **385.3 KH/s** | ESP32-S3R8  |
+| LilyGO T-Display S3                                                              | **384.5 KH/s** | ESP32-S3R8  |
+| Waveshare ESP32 S3 LCD 1.47 (USB-A)                                              | **384.5 KH/s** | ESP32-S3R8  |
+| Waveshare ESP32 S3 LCD 1.47B (USB-C)                                             | **383.5 KH/s** | ESP32-S3R8  |
+| Waveshare ESP32 S3 Touch LCD 3.5                                                 | **380.3 KH/s** | ESP32-S3R8  |
+| ESP32-S3 Geek                                                                    | **378.1 KH/s** | ESP32-S3    |
+| LilyGO T-QT                                                                      | **361.1 KH/s** | ESP32-S3FN8 |

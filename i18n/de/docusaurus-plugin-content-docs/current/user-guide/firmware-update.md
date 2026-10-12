@@ -1,55 +1,24 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: Firmware-Update
 ---
 
 # Firmware-Update
 
-So aktualisieren Sie die NMMiner-Firmware Ihres Geräts.
+Das Upgrade ist dasselbe wie das erste Flashen: Öffnen Sie das Browser-Flash-Tool erneut, wählen Sie Ihr Board aus und installieren Sie.
 
-## Methode 1: Web Flash Tool (empfohlen)
+## Schritte
 
-1. Besuchen Sie [flash.nmminer.com](https://flash.nmminer.com)
-2. Verbinden Sie Ihr Board per USB mit dem Computer
-3. Wählen Sie Ihr Board-Modell aus
-4. Klicken Sie auf **Flash**
-5. Das Tool löscht automatisch den alten Flash und schreibt die neue Firmware
+1. Öffnen Sie [flash.nmminer.com](https://flash.nmminer.com) in Chrome oder Edge.
+2. Wählen Sie das Board-Profil aus.
+3. Klicken Sie auf **Install**, wählen Sie den seriellen Port und warten Sie, bis der Vorgang abgeschlossen ist.
 
-:::warning
-Durch das Flashen werden **alle Einstellungen gelöscht** (Pool, WLAN, Wallet, Anzeige). Sie müssen nach dem Update neu konfigurieren.
-:::
+Nach dem Update **müssen Sie die Lizenz nicht erneut aktivieren**. Die Einstellungen (SSID / Pool / Wallet) bleiben beim Upgrade erhalten.
 
-## Methode 2: OTA-Update (Over-The-Air)
+## Firmware-Version remote verfolgen
 
-Für Geräte, die bereits in Ihrem Netzwerk eingerichtet sind:
+Die aktuelle Firmware-Version wird von jedem Miner über [`GET /api/system/info`](../api/system.md) gemeldet. Kombinieren Sie dies mit der [Swarm](./swarm.md)-Erkennung, und Sie sehen auf einen Blick, welche Miner im LAN noch ein Update benötigen.
 
-1. Laden Sie das neueste `.bin`-Firmware-Image von der [NMMiner-Website](https://www.nmminer.com) herunter.
-2. Öffnen Sie NM Monitor unter `http://<miner-ip>`
-3. Gehen Sie zu **Einstellungen → Firmware**
-4. Klicken Sie auf **Datei auswählen** und wählen Sie die heruntergeladene `.bin`-Datei
-5. Klicken Sie auf **Update**
+## Was sich zwischen den Versionen ändert
 
-Das Gerät wird neu gestartet, sobald der Upload abgeschlossen ist.
-
-:::tip
-OTA-Updates **bewahren Ihre Einstellungen** — Sie müssen WLAN/Wallet/Pool nach einem OTA-Update nicht neu konfigurieren.
-:::
-
-## Methode 3: API
-
-```bash
-curl -X POST http://<miner-ip>/api/update/firmware \
-  -F "file=@firmware.bin"
-```
-
-Siehe [API-Übersicht](../api/overview.md) für Details.
-
-## Versionshinweise
-
-Versionshinweise finden Sie auf der [GitHub Release-Seite](https://github.com/NMminer1024/NMMiner#release-log).
-
-## Nach dem Update
-
-1. Wenn Sie das Web Flash Tool verwendet haben: Richten Sie WLAN/Wallet/Pool über das Captive-Portal neu ein.
-2. Wenn Sie OTA verwendet haben: Das Mining wird nach dem Neustart automatisch fortgesetzt.
-3. Überprüfen Sie, ob die Firmware-Version auf der **System**-Seite mit der erwarteten Version übereinstimmt.
+Den vollständigen Änderungsverlauf finden Sie im [GitHub-Release-Log](https://github.com/NMminer1024/NMMiner#release-log). Größere Versionssprünge (z. B. **v1.x → v2.0**) brachten tiefgreifende Verbesserungen an NM Monitor und Swarm — ältere Releases sind nicht mit neueren Swarm-Protokollen interoperabel. Daher ist es am besten, die gesamte Flotte auf derselben Minor-Serie zu halten.

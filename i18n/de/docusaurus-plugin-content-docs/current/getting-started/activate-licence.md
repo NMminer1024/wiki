@@ -1,42 +1,34 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 title: Lizenz aktivieren
 ---
 
 # Lizenz aktivieren
 
-Einige fortgeschrittene Funktionen von NMMiner erfordern eine Lizenz.
+NMMiner erfordert eine **kostenpflichtige Lizenz** pro Gerät. Die Lizenz bindet Ihr Board an die Firmware und schaltet die Mining-Funktionalität frei.
 
-## Welche Funktionen benötigen eine Lizenz?
+## So erhalten Sie eine Lizenz
 
-Die gesamte Kern-Mining-Funktionalität ist **kostenlos** — Sie können ohne Lizenz auf jedem Pool minen.
+1. Folgen Sie nach dem Flashen den Bildschirmanweisungen im [Flash-Tool](https://flash.nmminer.com), um **eine Lizenz zu erwerben** — das Tool führt Sie durch den Vorgang.
+2. Nach dem Kauf zeigt das Tool Ihre Lizenz-Zeichenfolge an. Sie können sie direkt im Flash-Tool oder auf dem Gerät selbst aktivieren.
 
-Eine Lizenz schaltet Folgendes frei:
-- Höhere maximal einstellbare Taktfrequenz (höhere Hashrate)
-- Benutzerdefinierte Bildschirmschoner (`.ss`-Format-Upload)
-- Bestimmte erweiterte API-Endpunkte
+## Aktivierungsmethoden
 
-## So aktivieren Sie eine Lizenz
+Es gibt zwei Möglichkeiten, Ihre Lizenz zu aktivieren:
 
-1. **Kaufen** Sie eine Lizenz über den [NMMiner-Shop](https://www.nmminer.com).
-2. Sie erhalten einen **Lizenzschlüssel** per E-Mail.
-3. Öffnen Sie den [NM Monitor](../user-guide/nm-monitor.md) in Ihrem Browser.
-4. Gehen Sie zu **Einstellungen → Lizenz**.
-5. Fügen Sie Ihren Schlüssel ein und klicken Sie auf **Aktivieren**.
+### Methode 1 — Aktivierung im Flash-Tool (empfohlen)
 
-Oder über die API:
+1. Fügen Sie im [Flash-Tool](https://flash.nmminer.com) Ihre Lizenz-Zeichenfolge in das **Licence**-Eingabefeld ein.
+2. Klicken Sie auf die Schaltfläche **Activate**. Das Tool schreibt die Lizenz direkt auf Ihr Gerät.
+3. Bei Erfolg sehen Sie eine Bestätigung — keine weiteren Schritte nötig.
 
-```bash
-curl -X POST http://<miner-ip>/api/setting/licence \
-  -H "Content-Type: application/json" \
-  -d '{"LicenceKey":"XXXX-XXXX-XXXX-XXXX"}'
-```
+### Methode 2 — Aktivierung über das Konfigurationsportal des Geräts
 
-## Lizenz übertragen
+1. Schalten Sie das Board aus und wieder ein, falls es nicht automatisch neu gestartet wurde.
+2. Verbinden Sie sich mit dem offenen Hotspot `nmap-2.4g` und lassen Sie das Captive-Portal öffnen (oder besuchen Sie `http://192.168.4.1`).
+3. Fügen Sie die Lizenz-Zeichenfolge in das **Licence**-Feld ein und drücken Sie die Schaltfläche.
+4. Bei Erfolg zeigt die Seite eine Bestätigung und der Miner startet in den Normalmodus neu.
 
-Lizenzen sind an ein bestimmtes Gerät (MAC-Adresse) gebunden. Um eine Lizenz auf ein anderes Board zu übertragen, kontaktieren Sie den Support.
-
-## Support
-
-- 📧 **E-Mail**: nmminer1024@gmail.com
-- 💬 **Telegram**: [t.me/NMMiner](https://t.me/NMMiner)
+:::tip Die Lizenz ist an Ihr Board gebunden
+Ihre Lizenz ist mit Ihrem spezifischen Board verknüpft. Firmware-Updates erhalten die Lizenz — Sie müssen nur einmal pro Gerät aktivieren.
+:::

@@ -12,6 +12,7 @@ title: NMMiner Wiki
 
 - **ESP32-D0** — 최대 **1,035 KH/s**
 - **ESP32-S3** — 최대 **400 KH/s**
+- **ESP32-C3** — 최대 **402 KH/s**
 - **ESP32-C5** — 최대 **150 KH/s**
 
 ## NMMiner로 할 수 있는 일

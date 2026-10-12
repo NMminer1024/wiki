@@ -1,71 +1,41 @@
 ---
-sidebar_position: 9
+sidebar_position: 2
 title: Bildschirmseiten
 ---
 
 # Bildschirmseiten
 
-Detaillierte Beschreibung jeder Seite, die auf dem Gerätedisplay angezeigt wird.
+Boards mit einem Display durchlaufen eine kleine Anzahl von Seiten. Wechseln Sie mit der in [Tasten & Touch](./buttons.md) definierten Geste — Tippen, Doppelklick oder Wischen, je nach Hardware.
 
-## Miner-Seite
+NMMiner liefert Layouts für die folgenden nativen Größen aus:
 
-Die Standardseite — zeigt Live-Mining-Statistiken.
+```
+128x64    128x128    160x80     240x135
+240x240   320x170    320x172    320x240
+480x320   536x240
+```
 
-| Element                | Beschreibung                                                  |
-| ---------------------- | ------------------------------------------------------------- |
-| Hashrate               | Aktuelle Hashrate in KH/s, MH/s oder GH/s (automatische Skalierung) |
-| Akzeptierte Shares     | Vom Pool akzeptierte Gesamtshares                             |
-| Abgelehnte Shares      | Vom Pool abgelehnte Gesamtshares (Ziel >5 %)                  |
-| Pool-URL               | Aktuelle Stratum-Verbindung (primär oder sekundär)            |
-| Beste Share-Diff       | Höchste Share-Difficulty dieser Sitzung                      |
-| Beste Diff aller Zeiten| Höchste jemals aufgezeichnete Share-Difficulty                |
-| Betriebszeit           | Zeit seit dem letzten Neustart                                |
+## Seiten
 
-## Preis-Seite
+| Reihenfolge | Seite       | Zweck                                                                |
+| ----- | ---------- | ---------------------------------------------------------------------- |
+| 1     | **Loading**| Splash + Boot-Status, Firmware-Version, Netzwerk-Handshake.             |
+| 2     | **Config** | Wird im AP-Modus angezeigt — QR / IP / SSID, um das Captive-Portal zu erreichen.    |
+| 3     | **Miner**  | Live-Hashrate, **Sitzungs-Beste**- und **Allzeit-Beste**-Schwierigkeit, akzeptierte / abgelehnte Shares, Pool-URL, Betriebszeit. Die primäre „Arbeits"-Seite. |
+| 4     | **Clock**  | Große Uhr + Datum, mit BTC-Preis-Ticker, der bei Gewinnen grün und bei Verlusten rot wird. Wählbares 12-/24-h-Zeitformat, konfigurierbares Datumsformat. |
+| 5     | **Price**  | Zwei Modi:<br/>• **K-Line** — Candlestick-Diagramm Ihrer Hauptcoin, konfigurierbares Intervall (`15m`, `1h`, `4h`, `1d`, …).<br/>• **Wall** — Multi-Coin-Watchlist-Ansicht (bis zu 20 Paare). |
+| 6     | **Weather**| Aktuelle Bedingungen + AQI + 3-Tage-Vorhersage + Sonnenaufgang/-untergang. Wählbare Einheiten für Temperatur (°C / °F), Windgeschwindigkeit (km/h / mph / m/s) und Höhenmesser (Druck / Luftfeuchtigkeit). |
+| 7     | **Ladder** | **Opt-in**-globale Top-10-Bestenliste, sortiert nach bester je erzeugter Share-Schwierigkeit. Wallets werden aus Datenschutzgründen als `erste4…letzte4` angezeigt. Standardmäßig deaktiviert. Dieselben Daten werden auch im Web unter [ladder.nmminer.com](https://ladder.nmminer.com/) veröffentlicht — siehe [Ladder](./ladder.md). |
 
-Kryptowährungspreise und Diagramme.
+:::info
+Die Seitenreihenfolge ist auf allen Boards identisch; kleine / OLED-Bildschirme überspringen Seiten, die nicht passen. NMMiner merkt sich die Seite, auf der Sie waren, und setzt dort nach einem Neustart fort (seit v1.8.20).
+:::
 
-| Modus    | Beschreibung                                                    |
-| -------- | --------------------------------------------------------------- |
-| **K-Line** | Candlestick-Diagramm für die Hauptcoin. Intervall: 15m/1h/4h/1d |
-| **Liste**  | Einfache Preisliste der Watchlist-Coins mit 24h-Änderung      |
+## Bildschirmschoner
 
-Konfigurieren Sie den Modus in **Einstellungen → Markt**.
+Wenn Sie den Miner lange genug im Leerlauf lassen, wechselt er in einen Bildschirmschoner:
 
-## Wetterseite
+- **Bildmodus** — Diashow benutzerdefinierter, über NM Monitor hochgeladener Bilder.
+- **Black-Modus** — schaltet die Hintergrundbeleuchtung aus (oder OLED-Kontrast auf Minimum) für den niedrigsten Stromverbrauch und **die absolute Spitzenhashrate**.
 
-Aktuelle Wetterbedingungen (erfordert Internetzugang).
-
-| Element           | Beschreibung                                |
-| ----------------- | ------------------------------------------- |
-| Temperatur        | Aktuelle Temperatur (Celsius/Fahrenheit)    |
-| Bedingungen       | Sonnig, bewölkt, Regen usw.                 |
-| Luftqualität      | AQI-Wert (falls verfügbar)                  |
-| Wind              | Windgeschwindigkeit und -richtung           |
-| Alternative Anzeige| Luftdruck oder Luftfeuchtigkeit             |
-
-Konfigurieren Sie den Standort in **Einstellungen → Wetter**.
-
-## System-Seite
-
-Geräteinformationen.
-
-| Element        | Beschreibung                            |
-| -------------- | --------------------------------------- |
-| Firmware       | Aktuelle Firmware-Version               |
-| IP-Adresse     | LAN-IP-Adresse des Geräts               |
-| Hostname       | mDNS-Hostname                           |
-| MAC-Adresse    | Hardware-MAC-Adresse                    |
-| Chip           | ESP32-Chip-Modell (D0, S3, C3, C5)      |
-| Speicher       | Belegter / freier Flash-Speicher        |
-| Lizenz         | Lizenzstatus (aktiviert / nicht lizenziert) |
-
-## Anpassung
-
-Sie können steuern, welche Seiten erscheinen und in welcher Reihenfolge:
-
-- Deaktivieren Sie Seiten, die Sie nicht benötigen (über API — zukünftige UI-Funktion).
-- Legen Sie die Seitendreh-Timeout fest.
-- Tasten konfigurieren Seitenwechsel.
-
-Siehe [Tasten](./buttons.md) für Navigationssteuerung.
+Weck-Gesten: Einfacher Klick auf `BOOT` (oder `USER`) oder Tippen auf einen Touchscreen. Details: [Bildschirmschoner](./screen-saver.md).

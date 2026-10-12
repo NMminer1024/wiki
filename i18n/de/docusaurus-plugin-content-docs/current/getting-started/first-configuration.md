@@ -1,54 +1,51 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Erste Konfiguration
 ---
 
 # Erste Konfiguration
 
-Einrichten von WLAN, Wallet und anfänglichen Einstellungen über das Captive-Portal.
+Auf einem frisch geflashten Board wechselt NMMiner in den **AP-/Konfigurationsmodus** und stellt eine Webseite bereit, auf der Sie WiFi, Pool, Wallet und Anzeigeoptionen festlegen.
 
-## Auf das Portal zugreifen
+## Felder
 
-Nach dem ersten Flashen erstellt NMMiner einen WLAN-Hotspot:
+| Feld           | Standard                                                | Zweck                                                              |
+| --------------- | ------------------------------------------------------ | -------------------------------------------------------------------- |
+| **WiFi SSID**   | `NMTech-2.4G`                                          | Name Ihres 2,4-GHz-Netzwerks.                                       |
+| **WiFi-Passwort** | `NMMiner2048`                                        | WPA-/WPA2-Passwort.                                                 |
+| **Pool-URL (primär)** | `stratum+tcp://solobtc.nmminer.com:3333`        | NMMiners eigener SoloBTC-Pool. Nur überschreiben, wenn wirklich nötig. |
+| **Pool-URL (Fallback)** | `stratum+tcp://au.solobtc.nmminer.com:3333`    | NMMiners Asien-Pazifik-Fallback. Wird genutzt, wenn der primäre nicht erreichbar ist. |
+| **Wallet-/Worker-Name** | Demo-Wallet vorausgefüllt                        | Ihre BTC-Auszahlungsadresse, optional gefolgt von `.workerName`. **Ändern Sie diese!** |
+| **UI-Aktualisierung** | Board-spezifisch                                         | Niedriger = schnellere Bildschirmaktualisierung, etwas weniger Hashrate. Höher = maximale Hashrate, langsamere UI. |
+| **Bildschirmhelligkeit** | 100 %                                           | 0–100 %.                                                              |
+| **Zeitzone**  | `+8`                                                   | Float unterstützt (z. B. `8`, `5.5`, `-3.5`). Bereich: -13,5 ~ +13,5. |
+| **Zeitformat**| 24 h                                                   | 12 / 24 Stunden.                                                     |
+| **LED**        | Board-spezifisch                                         | On-Board-Status-LED aktivieren / deaktivieren.                       |
 
-- **SSID**: `NMMiner-Setup`
-- **Passwort**: keines (offenes Netzwerk)
+Wenn Sie **Speichern** drücken, benötigt der Miner 10–15 s, um in den Flash zu schreiben. **Setzen Sie nicht manuell zurück.** Er startet von selbst neu.
 
-1. Verbinden Sie Ihr Telefon, Tablet oder Ihren PC mit `NMMiner-Setup`.
-2. Ein Captive-Portal sollte automatisch erscheinen.
-3. Falls nicht, öffnen Sie einen Browser und gehen Sie zu `http://192.168.4.1`.
-
-## Konfigurationsschritte
-
-### WLAN
-
-- Wählen Sie Ihr Heim-WLAN aus der gescannten Liste.
-- Geben Sie das Passwort ein.
-- Das Gerät stellt eine Verbindung her und der Hotspot verschwindet.
-
-:::tip
-Wenn Sie mehrere Miner einrichten, verwenden Sie einen aussagekräftigen **Hostnamen**, um sie später leichter zu identifizieren (z.B. `garage-miner-01`, `office-miner-02`).
+:::tip Legen Sie Ihre eigene Wallet fest
+NMMiner ist vorkonfiguriert, um auf eine Demo-Adresse zu minen, damit das Board sofort „einfach funktioniert". Ersetzen Sie die Wallet durch Ihre eigene BTC-Adresse, bevor Sie ernsthaft loslegen — diese Demo-Adresse wird von jedem frischen Gerät geteilt.
 :::
 
-### Wallet-Adresse
+## Erneute Konfiguration erzwingen
 
-- Fügen Sie Ihre Bitcoin-Wallet-Adresse ein.
-- Format: `wallet.address` oder `wallet.address.workername`
-- Lassen Sie das Feld leer, um die Standardeinstellung zu verwenden (Mining auf das Entwicklungswallet — keine Auszahlungen).
+Wenn Sie Einstellungen ändern müssen, nachdem der Miner bereits online ist:
 
-### Pool
+- **Board mit einer Taste** → halten Sie `BOOT` lange gedrückt.
+- **Board mit zwei Tasten** → halten Sie `USER` lange gedrückt.
+- **Board mit Touchscreen** → halten Sie den Bildschirm 10 Sekunden lang gedrückt.
 
-- Die Standardeinstellung ist der **SoloBTC Pool von NMMiner** (`solobtc.nmminer.com:3333`).
-- Sie können dies später über [Pools-Konfiguration](../user-guide/pools.md) oder die [API](../api/settings-mining.md) ändern.
+Der Miner startet in den AP-Modus neu und stellt das Captive-Portal erneut bereit. Detailliertes Verhalten: [Tasten](../user-guide/buttons.md).
 
-## Nach der Konfiguration
+## Live-Aktualisierungen ohne Neustart
 
-1. Das Gerät startet das Mining **sofort**.
-2. Finden Sie die IP des Miners auf dem Bildschirm oder in der DHCP-Liste Ihres Routers.
-3. Greifen Sie auf die Weboberfläche unter `http://<miner-ip>` zu.
+Einige Einstellungen wirken **sofort** — kein erneutes Speichern und kein Neustart nötig:
 
-## Nächste Schritte
+- Bildschirmhelligkeit
+- Bildschirmrotation
+- LED an / aus
+- Zeitzone
+- Bildschirmschoner-Modus (Bild / Schwarz)
 
-- [Tasten & Bildschirme](../user-guide/buttons.md) — Navigieren im Gerätemenü
-- [NM Monitor](../user-guide/nm-monitor.md) — Webbasierte Verwaltungsoberfläche
-- [Pools](../user-guide/pools.md) — Pool-URL ändern
+Sie können diese über [NM Monitor](../user-guide/nm-monitor.md) ändern und die Wirkung sofort sehen.

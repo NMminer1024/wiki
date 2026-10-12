@@ -1,66 +1,64 @@
 ---
-sidebar_position: 4
-title: Ladder (Rangliste)
+sidebar_position: 10
+title: Ladder
 ---
 
-# Ladder (Rangliste)
+# Ladder — Globale Bestenliste
 
-Die globale NMMiner-Bestenliste — vergleichen Sie Ihre Leistung mit anderen Minern weltweit.
+Die **Ladder** ist NMMiners globale Bestenliste. Sie sortiert teilnehmende Miner nach der **höchsten Share-Schwierigkeit, die sie je erzeugt haben** — Ihr Allzeit-Bestes, nicht Ihre Hashrate, nicht Ihre Share-Anzahl. Ein einziger Glücksmoment kann einen 5-Dollar-ESP32 über ein Lager voller ASICs heben.
 
-## Was ist die Ladder?
+🌐 **Öffentliche Ladder**: [https://ladder.nmminer.com/](https://ladder.nmminer.com/)
 
-Die Ladder verfolgt die Mining-Leistung über alle NMMiner-Geräte hinweg, die sich registrieren. Sie zeigt:
+---
 
-- **Beste Share-Difficulty aller Zeiten** für jeden Worker
-- **Gesamt akzeptierte Shares**
-- **Betriebszeit**
-- **Hashrate** (aktuell und Durchschnitt)
+## So funktioniert es
 
-## Der Ladder beitreten
+```mermaid
+flowchart LR
+    miner[NMMiner device]
+    backend[(ladder.nmminer.com)]
+    site[Public Ladder]
+    you([Anyone with a browser])
 
-Die Ladder-Teilnahme ist **Opt-in** und standardmäßig deaktiviert.
-
-### Aktivieren
-
-1. Öffnen Sie [NM Monitor](./nm-monitor.md) in Ihrem Browser
-2. Gehen Sie zu **Einstellungen → Präferenzen**
-3. Schalten Sie **Ladder aktivieren** auf **Ein**
-
-Oder über die API:
-
-```bash
-curl -X POST http://<miner-ip>/api/setting/preference \
-  -H "Content-Type: application/json" \
-  -d '{"LadderEnable":true}'
+    miner -- best-ever share<br/>(opt-in only) --> backend
+    backend -- top-N ranking --> site
+    you -- HTTPS --> site
 ```
 
-### Anzeigen der Ladder
+Jeder Miner, der sich **anmeldet** (Opt-in), meldet periodisch seine beste Share-Schwierigkeit aller Zeiten an das Ladder-Backend. Das Backend aggregiert die Einträge und stellt die Spitzenreiter unter [ladder.nmminer.com](https://ladder.nmminer.com/) bereit.
 
-Besuchen Sie die NMMiner-Website, um die Ladder anzuzeigen:
-- [www.nmminer.com/ladder](https://www.nmminer.com/ladder)
+## Ladder-Seite auf dem Gerät
+
+Jeder NMMiner mit einem Display hat eine optionale **Ladder**-Seite, die die Bestenliste spiegelt — sehen Sie die globalen Top-10 direkt auf Ihrem Miner. Aktivieren Sie sie zusammen mit dem Opt-in unten.
+
+:::tip Bildschirmlose Boards (Varianten ohne OLED / ohne Display)
+Boards ohne Display können trotzdem an der Ladder teilnehmen. Öffnen Sie einfach [NM Monitor](./nm-monitor.md) → **Preferences** und schalten Sie den **Ladder**-Schalter ein. Ihr Miner meldet normal, auch wenn es keine On-Device-Seite zum Ansehen gibt.
+:::
+
+## Opt-in (standardmäßig aus)
+
+Die Ladder ist **Opt-in**. Ab Werk meldet NMMiner nichts. Zum Beitreten:
+
+1. Öffnen Sie [NM Monitor](./nm-monitor.md) → **Preferences**.
+2. Schalten Sie **Ladder** ein.
+3. Speichern Sie. Die On-Device-Ladder-Seite wird aktiv (auf Boards mit Bildschirm) und Ihr Miner beginnt zu melden.
+
+Sie können die Einstellung auch über die HTTP-API ändern — siehe [`POST /api/setting/preference`](../api/settings-preference.md) (`LadderEnable: true`).
 
 ## Datenschutz
 
-Wenn die Ladder aktiviert ist, sendet Ihr Miner regelmäßig:
-- Beste Share-Diff (Sitzung und aller Zeiten)
-- Akzeptierte/abgelehnte Shares
-- Hashrate
-- Betriebszeit
-- Geräte-Hostname
+NMMiner nimmt den Datenschutz der Teilnehmer ernst:
 
-**Nicht gesendet**:
-- Wallet-Adresse
-- Pool-URLs
-- WLAN-Zugangsdaten
-- Standortdaten
-- IP-Adresse (wird vom Server protokolliert, aber nicht öffentlich angezeigt)
+- **Keine persönlichen Daten** — nur die Wallet-Adresse, auf die Sie minen, wird gemeldet, und nur die **ersten 4 + letzten 4 Zeichen** dieser Adresse werden je öffentlich angezeigt (`bc1q…ab12`).
+- **Keine IP, kein Hostname** — nichts, das Sie oder Ihr Netzwerk identifizieren könnte.
+- **Standardmäßig aus** — Sie müssen die Funktion bewusst aktivieren.
 
-## Deaktivieren
+## Warum teilnehmen?
 
-Schalten Sie **Ladder aktivieren** in den Einstellungen auf **Aus** oder senden Sie:
+- 🏅 **Angeberrechte** — sehen Sie, wie glücklich Ihr winziger ESP32 im Vergleich zur Welt war.
+- 🤝 **Community** — die Ladder ist das De-facto-Treffen für ESP32-BTC-Enthusiasten.
+- ✨ **Der Nervenkitzel** — eine Share mit hoher Schwierigkeit zu treffen ist selten; die Ladder ist der Ort, an dem diese Momente gefeiert werden.
 
-```bash
-curl -X POST http://<miner-ip>/api/setting/preference \
-  -H "Content-Type: application/json" \
-  -d '{"LadderEnable":false}'
-```
+---
+
+> Besuchen Sie [https://ladder.nmminer.com/](https://ladder.nmminer.com/), um den aktuellen Stand zu sehen.

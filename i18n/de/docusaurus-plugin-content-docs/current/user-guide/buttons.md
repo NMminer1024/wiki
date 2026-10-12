@@ -1,54 +1,38 @@
 ---
 sidebar_position: 1
-title: Tasten
+title: Tasten & Touch
 ---
 
-# Tasten & Navigation
+# Tasten & Touch
 
-So navigieren Sie auf dem Bildschirmmenü des Geräts mit den physischen Tasten.
+Verschiedene Boards haben eine Taste (`BOOT`), zwei (`BOOT` + `USER`) oder einen Touchscreen. NMMiner bietet konsistente Gesten für alle drei.
 
-## Tastenbelegung
+## Boards mit einer Taste
 
-Die meisten unterstützten Boards haben mindestens eine Taste. Boards mit Displays haben normalerweise 2-3.
+| Geste       | Aktion                                            |
+| ------------- | ------------------------------------------------- |
+| Einfacher Klick  | Bildschirm aufwecken (auf Boards mit Display).       |
+| Doppelklick  | Zur nächsten Bildschirmseite wechseln.                   |
+| Langes Drücken    | Miner-Konfiguration aufrufen (AP-Modus erzwingen).        |
 
-| Taste        | Kurzer Druck                  | Langer Druck (>0,5 s)           |
-| ------------ | ----------------------------- | ------------------------------- |
-| **BOOT/IO0** | Seite vorwärts/nächste        | Menüaktion (Kontextabhängig)    |
-| **IO9**      | Seite rückwärts/vorherige     | Umschalten des Bildschirmschoners|
-| **RST**      | Gerät neustarten              | Werkseinstellungen (10 s halten) |
+## Boards mit zwei Tasten
 
-## Seitenablauf
+| Taste   | Geste       | Aktion                                                  |
+| -------- | ------------- | ------------------------------------------------------- |
+| `BOOT`   | Einfacher Klick  | Bildschirm aufwecken.                                        |
+| `BOOT`   | Doppelklick  | Bildschirm aufwecken.                                        |
+| `BOOT`   | Langes Drücken    | Alle gespeicherten Zustände aus NVS löschen (falls im Build aktiviert).  |
+| `USER`   | Einfacher Klick  | Bildschirm aufwecken.                                        |
+| `USER`   | Doppelklick  | Zur nächsten Bildschirmseite wechseln.                         |
+| `USER`   | Langes Drücken    | Miner-Konfiguration aufrufen (AP-Modus erzwingen).              |
 
-Der Miner-Bildschirm durchläuft diese Seiten der Reihe nach:
+## Boards mit Touchscreen
 
-```mermaid
-flowchart LR
-    A[Miner] --> B[Preis]
-    B --> C[Wetter]
-    C --> D[System]
-    D --> E[Bildschirmschoner]
-    E --> A
-```
+Seit v2.0.01 unterstützen Touch-Boards (NM-TV-154, CYD 2.4 / 2.8 / 3.5, Waveshare 3.5 Touch usw.) Gesten **direkt auf dem Bildschirm**:
 
-| Seite               | Zeigt                                                               |
-| ------------------- | ------------------------------------------------------------------- |
-| **Miner**           | Hashrate, Shares (akzeptiert/abgelehnt), Pool-URL, beste Share-Diff |
-| **Preis**           | BTC/USDT-Preis, K-Line-Diagramm, Watchlist-Rotation                 |
-| **Wetter**          | Aktuelles Wetter, Luftqualität, Vorhersage                          |
-| **System**          | Firmware-Version, IP-Adresse, Hostname, Betriebszeit, Speicher      |
-| **Bildschirmschoner**| Benutzerdefinierte Diashow oder schwarzer Bildschirm               |
+| Geste                       | Aktion                                            |
+| ----------------------------- | ------------------------------------------------- |
+| Tippen                           | Zur nächsten Bildschirmseite wechseln (weckt den Bildschirm auch, falls er schläft). |
+| **10 Sekunden lang drücken**     | Miner-Konfiguration aufrufen (AP-Modus erzwingen).        |
 
-## Spezielle Tastenkombinationen
-
-- **Langes Drücken von BOOT auf der Miner-Seite**: Wechselt zwischen primären und sekundären Pool-Einstellungen.
-- **Langes Drücken von BOOT auf der Bildschirmschoner-Seite**: Erzwingt das Überspringen des aktuellen Bildschirmschoner-Bildes.
-- **RST 10 Sekunden lang gedrückt halten**: Setzt alle Einstellungen auf die Werkseinstellungen zurück (mit Ausnahme der Lizenz).
-
-## Board-spezifische Hinweise
-
-| Board           | Tasten                                                               |
-| --------------- | -------------------------------------------------------------------- |
-| M5Stack Core    | Drei Fronttasten (A, B, C). C = Menü-Langdruck.                      |
-| CYD / CYD2USB   | Eine Taste (BOOT). Für die Navigation kurz drücken, lang für Menü.   |
-| ESP32-DevKitC   | BOOT-Taste. Kein Display — Tastendrücke schalten die LED-Modi um.    |
-| TTGO T-Display  | Zwei Tasten (IO35 oben, IO0 unten).                                  |
+Siehe [Bildschirmseiten](./screens.md) für die Seitenreihenfolge und [Konfigurationsportal](./configuration-portal.md) dafür, was nach einem langen Druck passiert.

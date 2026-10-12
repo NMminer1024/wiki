@@ -1,52 +1,26 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Konfigurationsportal
 ---
 
 # Konfigurationsportal
 
-Die webbasierte Einrichtungsseite, die erscheint, wenn Sie sich mit dem WLAN-Hotspot des Miners verbinden.
+Das Konfigurationsportal ist eine kleine Webseite im Captive-Portal-Stil, die vom Miner selbst bereitgestellt wird, solange er sich im AP-Modus befindet.
 
-## Zugriff auf das Portal
+## Wann das Portal angezeigt wird
 
-### Erstmalige Einrichtung
-1. Nach dem Flashen erstellt der Miner einen WLAN-Hotspot: **`NMMiner-Setup`**
-2. Verbinden Sie Ihr Gerät mit diesem WLAN
-3. Ein Captive-Portal öffnet sich automatisch, oder navigieren Sie zu `http://192.168.4.1`
+- **Erster Boot** nach dem Flashen.
+- **Wiederverbindungsfehler** — wenn der Miner das gespeicherte WiFi nicht innerhalb von ~15 Sekunden erreichen kann, fällt er automatisch in den AP-Modus zurück.
+- **Manuell erzwungen** — halten Sie die Konfigurationstaste lange gedrückt (siehe [Tasten](./buttons.md)).
 
-### Nach der ersten Konfiguration
-1. Stellen Sie sicher, dass Ihr Gerät im **selben WLAN-Netzwerk** wie der Miner ist
-2. Öffnen Sie einen Browser und gehen Sie zu `http://<miner-ip>`
-3. Alternativ verwenden Sie den Hostnamen: `http://<hostname>.local`
+## Es erreichen
 
-## Portal-Seiten
+1. Öffnen Sie die WiFi-Einstellungen auf Ihrem Telefon oder Laptop.
+2. Verbinden Sie sich mit dem offenen Hotspot **`nmap-2.4g`**.
+3. Auf einem Telefon öffnet sich automatisch ein Captive-Portal-Browser. Auf einem PC öffnen Sie `http://192.168.4.1`.
 
-### WLAN-Konfiguration
-- Scannt nach verfügbaren 2,4 GHz WLAN-Netzwerken
-- Speichert SSID und Passwort
-- Optional: Legen Sie einen benutzerdefinierten Hostnamen fest
+Sie sehen das Konfigurationsformular, das unter [Erste Konfiguration](../getting-started/first-configuration.md) beschrieben ist.
 
-### Wallet-Konfiguration
-- Legen Sie Ihre Bitcoin-Wallet-Adresse fest
-- Format: `bc1q...` (SegWit) oder `1...` (Legacy) oder `3...` (SegWit wrapped)
-- Optional: Fügen Sie einen Worker-Namen mit `.workername` hinzu
+## Speicherverhalten
 
-### Pool-Konfiguration
-- Legen Sie primäre und sekundäre Stratum-Pool-URLs fest
-- Der Miner versucht zuerst den primären Pool, Fallback auf den sekundären
-- Format: `stratum+tcp://pool-url:port`
-
-### Display-Einstellungen
-- Helligkeit (1-100)
-- Bildschirmrotation (0, 90, 180, 270)
-- Bildschirmschoner-Timeout und -Modus
-
-### Erweiterte Einstellungen
-- Zeitzonen-Offset
-- Zeitformat (12h/24h)
-- Datumsformat
-- Marktpräferenzen (Hauptcoin, Watchlist)
-
-:::tip
-Das Portal funktioniert auf jedem Gerät mit einem Browser — Telefon, Tablet, Laptop. Keine App-Installation erforderlich.
-:::
+Ein Druck auf **Speichern** schreibt die neuen Einstellungen, wartet, bis der geräteinterne Speicher geflusht ist (10–15 s), und startet dann neu. **Schalten Sie während dieses Fensters nicht aus** — lassen Sie es von selbst neu starten.

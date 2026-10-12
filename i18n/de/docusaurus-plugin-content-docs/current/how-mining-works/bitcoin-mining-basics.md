@@ -5,46 +5,40 @@ title: Bitcoin Mining Grundlagen
 
 # Bitcoin Mining Grundlagen
 
-Was passiert eigentlich, wenn ein Miner „einen Block findet"?
+Bevor wir uns ansehen, wie NMMiner teilnimmt, hier das **Ein-Bildschirm-Denkmodell** des Bitcoin-Minings.
 
-## Proof of Work in Kürze
+## Die Aufgabe
 
-Bitcoin-Mining ist ein wettbewerbsorientiertes Ratespiel:
+Bitcoin-Miner wetteifern darum, eine Zahl zu finden — einen **Nonce** — die, kombiniert mit dem Rest des Block-Headers und **zweimal** durch die SHA-256-Hashfunktion geschickt (auch **SHA-256d** genannt), eine Ausgabe erzeugt, die *kleiner* ist als ein vom Netzwerk gesetzter Zielwert.
 
-1. **Das Netzwerk schlägt einen Block vor** — eine Liste von Transaktionen plus einen Block-Header.
-2. **Miner hashen den Header** immer und immer wieder mit verschiedenen Nonce-Werten (und Extranonce).
-3. **Das Ziel** ist es, einen Hash zu finden, der **kleiner** als das aktuelle Schwierigkeitsziel ist.
-4. **Der Gewinner** sendet seinen Block und erhält die **Blocksubvention + Gebühren**.
+Das ist alles. Die gesamte Branche ist ein einziges Suchproblem:
 
-Jeder Hash ist ein unabhängiger Münzwurf — es gibt keinen Fortschritt und kein Gedächtnis.
+> *Finden Sie einen 32-Bit-Wert, sodass `sha256(sha256(header_mit_diesem_wert))` kleiner ist als das Netzwerkziel.*
 
-## Blocksubvention
+## Schwierigkeit, einfach erklärt
 
-Stand 2026:
+- **Netzwerk-Schwierigkeit** — wie schwer es das *Netzwerk* jedem macht, den nächsten Block zu gewinnen. Heute ist dies astronomisch hoch; Sie bräuchten ein ganzes Lager voller ASICs, um in vernünftiger Zeit einen Block zu landen.
+- **Pool-Schwierigkeit** — wie schwer der *Pool* Sie suchen lässt. Pools setzen dies viel niedriger, damit kleine Miner **Shares** produzieren (Beweis, dass Sie wirklich suchen).
+- **Share** — ein Hash-Ergebnis, das die Pool-Schwierigkeit erreicht (aber nicht unbedingt die Netzwerk-Schwierigkeit). Pools schreiben Ihnen Shares gut.
 
-- **Bitcoin**: 3,125 BTC pro Block (nach der Halbierung 2024)
-- **DigiByte**: variiert je nach Algorithmus; NMMiner nutzt den SHA256-Algorithmus von DigiByte
+Die NMMiner-Hashrate liegt im Bereich von **Hunderten von KH/s**, daher spricht es mit Pools, die die Share-Schwierigkeit sehr niedrig setzen — oft ein Bruchteil von 1.
 
-## Schwierigkeit (Difficulty)
+## Mining-Auszahlung, einfach erklärt
 
-Das Netzwerk passt die Schwierigkeit **alle 2016 Blöcke** (~2 Wochen) an, um eine 10-Minuten-Blockzeit beizubehalten.
+Wenn ein Pool einen gewinnenden Hash findet (über alle seine verbundenen Miner), beansprucht er die Block-Belohnung und verteilt sie gemäß der Share-Zahlen jedes Teilnehmers. Kleine Miner erhalten kleine Auszahlungen, aber sie erhalten sie *direkt auf ihre Wallet* bei der Art von Pool, mit der NMMiner sich verbindet.
 
-- Die aktuelle Bitcoin-Schwierigkeit liegt bei **~110 Billionen** (110T).
-- Ein einzelner ESP32-Miner bei 1 MH/s hat eine Chance von etwa **1 zu 110 Trillionen** pro Hash.
-- Aus diesem Grund gibt es **Mining-Pools** — sie bündeln Hashrate und teilen die Belohnungen.
+## DigiByte (DGB) funktioniert genauso
 
-## Pool-Mining
+DGB verwendet ebenfalls SHA-256d, daher ist die Mathematik identisch — nur die Netzwerkparameter und Pools unterscheiden sich. NMMiner unterstützt sowohl BTC als auch DGB, ohne die Firmware zu ändern.
 
-Anstatt allein zu minen, treten die meisten Miner einem **Pool** bei:
+## Was NMMiner tut
 
-1. Der Pool gibt jedem Miner ein **Share-Schwierigkeitsziel** — viel einfacher als das Netzwerkziel.
-2. Miner reichen **Shares** (Beinahe-Treffer) ein, die dieses einfachere Ziel erreichen.
-3. Wenn ein Miner einen **echten** Block findet, verteilt der Pool die Belohnung anteilig basierend auf den eingereichten Shares.
+NMMiner:
 
-NMMiner verwendet standardmäßig den **SoloBTC-Pool** — eine Solo-Mining-Variante, bei der der Pool die Infrastruktur bereitstellt, aber der Blockfinder die volle Belohnung erhält.
+1. Verbindet sich mit einem von Ihnen konfigurierten Stratum-Pool (standardmäßig NMMiners eigener SoloBTC-Pool).
+2. Erhält einen Strom von **Jobs** vom Pool.
+3. Durchsucht den Nonce-Raum so schnell, wie der Chip es erlaubt.
+4. Sendet gültige Shares an den Pool zurück.
+5. Zeigt Ihnen die Rate, die letzte Share und Ihr Sitzungs-/Allzeit-Bestes.
 
-## Weiterführende Lektüre
-
-- [Solo vs. Pool-Mining](./solo-vs-pool-mining.md) — Detaillierter Vergleich
-- [Stratum-Protokoll](./stratum-protocol.md) — Wie Miner mit Pools kommunizieren
-- [NMMiner in der Pipeline](./nmminer-in-the-pipeline.md) — Wie NMMiner in die Mining-Landschaft passt
+Die nächsten beiden Seiten erklären das Protokoll und den Datenfluss im Miner.

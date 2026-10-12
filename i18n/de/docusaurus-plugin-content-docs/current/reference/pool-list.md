@@ -1,54 +1,35 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 title: Pool-Liste
 ---
 
 # Pool-Liste
 
-Stratum-Pools, von denen bekannt ist, dass sie mit NMMiner funktionieren.
+Pools, die bekanntermaßen gut mit NMMiners ~150–1000 KH/s-Hashrate zusammenarbeiten. Diese passen die Share-Schwierigkeit für kleine Miner dynamisch an.
 
-## Solo-Pools
+## Bitcoin (BTC) — **Standard**
 
-Dies sind Solo-Pools — Sie erhalten die volle Belohnung, wenn Sie einen Block finden:
+| Pool                              | Stratum-URL                                       | Dashboard                                                |
+| --------------------------------- | ------------------------------------------------- | -------------------------------------------------------- |
+| **NMMiner SoloBTC** (Standard)     | `stratum+tcp://solobtc.nmminer.com:3333`          | [solobtc.nmminer.com](https://solobtc.nmminer.com)       |
+| **NMMiner SoloBTC AU** (Fallback) | `stratum+tcp://au.solobtc.nmminer.com:3333`       | [au.solobtc.nmminer.com](https://au.solobtc.nmminer.com) |
 
-| Pool                  | URL                                        | Port | SSL  |
-| --------------------- | ------------------------------------------ | ---- | ---- |
-| **NMMiner SoloBTC**   | `stratum+tcp://solobtc.nmminer.com`        | 3333 | ✅   |
-| NMMiner SoloBTC (AU)  | `stratum+tcp://au.solobtc.nmminer.com`     | 3333 | ✅   |
-| CK Solo Pool          | `stratum+tcp://solo.ckpool.org`            | 3333 | ✅   |
+Die SoloBTC-Pools werden von NMMiner betrieben. Sie sind auf jedem Gerät vorkonfiguriert — ab Werk müssen Sie nur Ihre eigene Wallet-Adresse einfügen.
 
-## Geteilte Pools (PPLNS/FPPS)
+## DigiByte (DGB)
 
-Diese teilen die Belohnungen unter allen Workern — stetige kleine Auszahlungen:
+| Pool                | Stratum-URL                                       | Dashboard                                            |
+| ------------------- | ------------------------------------------------- | ---------------------------------------------------- |
+| Solo Miner DGB      | `stratum+tcp://dgb-stratum.solominer.net:3333`    | [digibyte.solominer.net](https://digibyte.solominer.net) |
 
-| Pool         | URL                                        | Port | SSL  |
-| ------------ | ------------------------------------------ | ---- | ---- |
-| Braiins      | `stratum+tcp://stratum.braiins.com`        | 3333 | ✅   |
-| F2Pool       | `stratum+tcp://btc.f2pool.com`             | 3333 | ✅   |
-| Antpool      | `stratum+tcp://stratum.antpool.com`        | 3333 | ✅   |
-| ViaBTC       | `stratum+tcp://stratum.viabtc.com`         | 3333 | ✅   |
-| Poolin       | `stratum+tcp://btc-bj.poolin.com`          | 3333 | ✅   |
-| SlushPool    | `stratum+tcp://stratum.slushpool.com`      | 3333 | ✅   |
+DGB teilt den SHA-256d-Hashalgorithmus mit BTC, daher funktioniert dieselbe NMMiner-Firmware ohne Build-Änderung — nur die Pool-URL und die Wallet-Adresse unterscheiden sich.
 
-## DigiByte Pools
+## Hinweise
 
-| Pool         | URL                                        | Port | SSL  |
-| ------------ | ------------------------------------------ | ---- | ---- |
-| DGB Solo     | `stratum+tcp://dgb-solo.nmminer.com`       | 3333 | ✅   |
-
-## Konfiguration
-
-Um den Pool zu ändern:
-1. Verwenden Sie das Captive-Portal unter `http://<miner-ip>`
-2. Oder den NM Monitor unter **Einstellungen → Mining**
-3. Oder die API: `POST /api/setting/mining`
-
-:::warning
-Stellen Sie sicher, dass Sie die **richtige Wallet-Adresse** für jeden Pool angeben. Einige Pools erfordern, dass Sie sich zuerst auf deren Website registrieren.
+:::tip
+Wenn ein Pool TLS unterstützt, wechseln Sie das Schema auf `stratum+ssl://` — derselbe Host und Port.
 :::
 
-## Eigene Pools hinzufügen
-
-Jeder Stratum-v1-kompatible Pool sollte funktionieren. Die URL muss mit `stratum+tcp://` oder `stratum+ssl://` beginnen und den Port enthalten.
-
-Beispiel: `stratum+tcp://mein-pool.example.com:3333`
+:::warning
+Große kommerzielle Pools, die eine hohe Mindest-Share-Schwierigkeit vorschreiben (z. B. `0x100000000`), lehnen jede NMMiner-Share ab. Bleiben Sie bei SoloBTC-artigen Endpunkten, die die Share-Schwierigkeit für kleine Miner auf sehr niedrige Werte herunterskalieren.
+:::

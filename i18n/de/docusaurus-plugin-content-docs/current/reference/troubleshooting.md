@@ -5,50 +5,55 @@ title: Fehlerbehebung
 
 # Fehlerbehebung
 
-Häufige Probleme und deren Lösungen.
+## Board erscheint nicht im Flash-Tool
 
-## Miner startet nicht
+- **Stecken Sie das USB-Kabel ein paar Mal neu ein** — die WebSerial-Auswahl kann Geräte beim ersten Hot-Plug übersehen, besonders direkt nach der Treiberinstallation.
+- Verwenden Sie ein **Daten**-USB-Kabel (nicht nur Strom).
+- Versuchen Sie einen anderen USB-Port; einige Hubs leiten CDC nicht durch.
+- Installieren Sie unter Windows den **CP210x**- oder **CH340**-Treiber, je nach Bridge-Chip Ihres Boards.
+- Halten Sie `BOOT` gedrückt, während Sie `RESET` drücken, um den Download-Modus zu erzwingen.
 
-| Symptom                        | Mögliche Ursachen & Lösungen                                                        |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| Keine LED, nichts auf dem Bildschirm | Überprüfen Sie die Stromversorgung — versuchen Sie ein anderes USB-Kabel und einen anderen Anschluss. Einige Boards benötigen Netzteile mit höherer Amperezahl (>1A). |
-| Boot-Loop (wiederholte Neustarts) | Neu flashen. Möglicherweise beschädigte Firmware. Verwenden Sie das Web Flash Tool und löschen Sie den Flash zuerst. |
-| Board nicht vom Computer erkannt | Treiber installieren: CP210x oder CH340. Überprüfen Sie den Geräte-Manager (Windows) oder `ls /dev/tty*` (macOS/Linux). |
+## Hängt auf „Loading"
 
-## WLAN-Probleme
+- Bestätigen Sie, dass das WiFi **2,4 GHz** ist (die meisten ESP32-Chips unterstützen kein 5 GHz).
+- Warten Sie 15 s. Wenn es sich nicht verbinden kann, sollte es automatisch in den AP-Modus zurückfallen.
 
-| Symptom                        | Mögliche Ursachen & Lösungen                                                        |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| Captive-Portal erscheint nicht  | Navigieren Sie manuell zu `http://192.168.4.1` im Browser. Stellen Sie sicher, dass Sie mit `NMMiner-Setup` WiFi verbunden sind. |
-| Verbindung zum Heim-WLAN schlägt fehl | Überprüfen Sie das Passwort. Stellen Sie sicher, dass es sich um 2,4 GHz WiFi handelt (5 GHz wird nicht unterstützt). Versuchen Sie, den Miner näher am Router zu platzieren. |
-| Häufige Verbindungsabbrüche     | Schwaches Signal — bringen Sie den Miner näher an den AP. Fügen Sie einen 100 µF Kondensator zwischen 3,3V und GND hinzu (ESP32-D0-Boards). Reduzieren Sie die Taktfrequenz, falls übertaktet. |
+## AP `nmap-2.4g` nicht sichtbar
 
-## Mining-Probleme
+- Schalten Sie das Board aus und wieder ein.
+- Halten Sie die Konfigurationstaste 5 s lang gedrückt (siehe [Tasten](../user-guide/buttons.md)).
 
-| Symptom                        | Mögliche Ursachen & Lösungen                                                        |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| Keine Shares werden eingereicht | Überprüfen Sie, ob die Pool-URL korrekt ist. Bestätigen Sie, dass das Wallet-Adressformat gültig ist. Versuchen Sie den Standard-SoloBTC-Pool, um Netzwerk-/Firewall-Probleme auszuschließen. |
-| Hohe Ablehnungsrate (>5 %)     | Hohe Latenz zum Pool — versuchen Sie einen geografisch näheren Server. Überprüfen Sie auf WiFi-Paketverlust. Reduzieren Sie die Taktfrequenz (instabile Overclock). |
-| Hashrate deutlich unter den Erwartungen | Keine Lizenz — die Standardtaktung begrenzt die Leistung. Board überhitzt — verbessern Sie die Kühlung. Stromversorgung unzureichend — verwenden Sie ein besseres USB-Kabel/Netzteil. |
+## Captive-Portal wird angezeigt, aber Speichern funktioniert nicht
 
-## Display-Probleme
+- Warten Sie das volle 15-s-Fenster ab — das Speicher-Flush ist absichtlich langsam.
+- Wenn die Seite nie zurückkehrt, schalten Sie aus und wieder ein und versuchen Sie es erneut.
 
-| Symptom                        | Mögliche Ursachen & Lösungen                                                        |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| Weißer/leerer Bildschirm       | Board hat keinen Bildschirm (z.B. DevKitC) — das ist normal. Versuchen Sie, `RotateScreen` in den Einstellungen anzupassen. |
-| Bildschirm verkehrt herum      | Setzen Sie `RotateScreen: 180` in den Präferenzeinstellungen.                       |
-| Bildschirm flackert            | Versuchen Sie eine niedrigere Helligkeit. Einige Displays haben inhärentes Flackern — normal bei günstigen TFTs. |
+## Pool hängt auf „Connecting"
 
-## API / Netzwerk
+- Überprüfen Sie Pool-URL und Port.
+- Versuchen Sie `stratum+tcp://` statt `stratum+ssl://` (oder umgekehrt).
+- Versuchen Sie den [Fallback-Pool](../user-guide/pools.md).
 
-| Symptom                        | Mögliche Ursachen & Lösungen                                                        |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| Keine Verbindung zu `http://<miner-ip>` | Überprüfen Sie, ob der Miner eingeschaltet und mit WiFi verbunden ist. Überprüfen Sie die IP auf dem Miner-Bildschirm oder in der DHCP-Liste des Routers. Stellen Sie sicher, dass Sie sich im selben LAN befinden. |
-| API gibt 404 zurück            | Endpunkt-Pfad überprüfen — URLs unterscheiden zwischen Groß- und Kleinschreibung. Siehe [API-Übersicht](../api/overview.md). |
-| Swarm findet keine anderen Miner | Stellen Sie sicher, dass alle Miner im selben Subnetz sind. Halten Sie die Miner-Seite auf mindestens einem Gerät geöffnet. Rufen Sie manuell `/alive?rescan` auf. |
+## Hashrate liegt deutlich unter dem Datenblatt
 
-## Immer noch festgefahren?
+- Die **UI-Aktualisierung**-Einstellung ist auf kleinen CPUs aufwendig. Versuchen Sie, sie zu senken (höherer Wert im Formular).
+- Verwenden Sie den **Black**-Bildschirmschoner, um die Display-Neuzeichnungskosten vollständig zu entfernen.
+- Stellen Sie sicher, dass Ihre Stromversorgung 500 mA liefern kann — ein wackeliger USB-Port verursacht Brownouts.
 
-- 📧 **E-Mail**: nmminer1024@gmail.com
-- 💬 **Telegram**: [t.me/NMMiner](https://t.me/NMMiner)
-- Geben Sie Details zu Ihrem Board-Modell, der Firmware-Version und den genauen Symptomen an.
+## Alle Shares werden abgelehnt
+
+- Die Pool-Diff ist zu hoch eingestellt. Wechseln Sie zu NMMiners offiziellem [SoloBTC](https://solobtc.nmminer.com)-Pool (oder dem offiziellen Fallback-Pool).
+- Überprüfen Sie das Wallet-Feld — viele Pools lehnen falsch formatierte Wallet-Adressen ab. Gültige Bitcoin-Adressformate finden Sie unter [FAQ](./faq).
+
+## NM Monitor nicht erreichbar
+
+- Stellen Sie sicher, dass Sie und der Miner sich im **selben WiFi** befinden.
+- Prüfen Sie die Miner-Seite des Miners auf seine IP — versuchen Sie diese direkt.
+- Deaktivieren Sie jegliches **VPN** auf Ihrem Telefon/PC; einige VPNs blockieren LAN-Verkehr.
+- Wenn Ihr Router **AP-Isolation** verwendet, können Geräte einander nicht erreichen — deaktivieren Sie diesen Modus.
+
+## Das Swarm-Menü zeigt weniger Miner als ich habe
+
+- Klicken Sie auf **Re-scan** (oder laden Sie die Seite neu).
+- LAN-Scans umfassen nur ein /24-Subnetz. Miner in einem anderen Subnetz werden nicht angezeigt.
+- Stellen Sie sicher, dass der fehlende Miner sich auf der **Miner-Seite** seines Bildschirms befindet — der Discovery-Thread läuft nur auf dieser Seite.

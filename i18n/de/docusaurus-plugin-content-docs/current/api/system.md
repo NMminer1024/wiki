@@ -5,83 +5,111 @@ title: System
 
 # System-Endpunkte
 
-Geräteinformationen und Neustart.
-
 ---
 
 ## `GET /api/system/info`
 
-Vollständiger Gerätezustand — Identität, Mining-Statistiken, Speicherung, Uptime.
+Vollständiger System-Schnappschuss. Dies liest das NM-Monitor-Dashboard bei jeder Aktualisierung.
 
 ### Response
 
 ```json
 {
   "identity": {
+    "hwModel":   "NMMiner",
     "hostName":  "nm-cyd-c5-ab12cd",
     "fwVersion": "v2.0.04",
-    "chipModel": "ESP32-C5",
-    "mac":       "AA:BB:CC:DD:EE:FF"
+    "rssi":      -52
   },
   "miner": {
-    "hashRate":      0.956432,
-    "bestDiff":      0.0421,
-    "bestDiffEver":  1.7833,
-    "sAccepted":     1234,
-    "sRejected":     5,
-    "pool":          "stratum+tcp://solobtc.nmminer.com:3333",
-    "uptimeSeconds": 4321
+    "hashRate":         0.000956432,
+    "sAccepted":        128,
+    "sRejected":        2,
+    "uptimeSeconds":    4321,
+    "uptimeEver":       58732,
+    "networkDiff":      "112392546849.9999",
+    "poolDiff":         "0.00050",
+    "lastDiff":         "0.00073",
+    "bestDiffSession":  "0.04215",
+    "bestDiffEver":     "1.78330",
+    "blkhits":          0,
+    "freeHeap":         118432,
+    "minFreeHeap":      94312
+  },
+  "stratum": {
+    "url":  "solobtc.nmminer.com:3333",
+    "user": "bc1q....worker1"
+  },
+  "temps": {
+    "vcore": 51.3,
+    "asic":  null
   },
   "storage": {
-    "totalKB": 4096,
-    "usedKB":  1204,
-    "freeKB":  2892
+    "fsTotal": 1048576,
+    "fsUsed":  262144
   }
 }
 ```
 
-| Feld                          | Typ     | Bedeutung                                          |
-| ----------------------------- | ------- | -------------------------------------------------- |
-| `identity.hostName`           | string  | Geräte-Hostname.                                   |
-| `identity.fwVersion`          | string  | Firmware-Version.                                  |
-| `identity.chipModel`          | string  | ESP32-Chip-Modell.                                 |
-| `identity.mac`                | string  | MAC-Adresse.                                       |
-| `miner.hashRate`              | number  | Hashrate in **GH/s**. Mit `1e9` für H/s multiplizieren. |
-| `miner.bestDiff`              | number  | Beste Share-Difficulty dieser Sitzung.             |
-| `miner.bestDiffEver`          | number  | Beste Share-Difficulty aller Zeiten.               |
-| `miner.sAccepted`             | integer | Akzeptierte Shares.                                |
-| `miner.sRejected`             | integer | Abgelehnte Shares.                                 |
-| `miner.pool`                  | string  | Aktuelle Stratum-Pool-URL.                         |
-| `miner.uptimeSeconds`         | integer | Betriebszeit in Sekunden.                          |
-| `storage.totalKB`             | integer | Gesamter Flash-Speicher in KB.                     |
-| `storage.usedKB`              | integer | Belegter Speicher in KB.                           |
-| `storage.freeKB`              | integer | Freier Speicher in KB.                             |
+### Feldreferenz
+
+| Pfad                       | Typ     | Bedeutung                                                  |
+| -------------------------- | -------- | -------------------------------------------------------- |
+| `identity.hwModel`         | string   | Immer `"NMMiner"`.                                      |
+| `identity.hostName`        | string   | Geräte-Hostname.                                         |
+| `identity.fwVersion`       | string   | Firmware-Version.                                        |
+| `identity.rssi`            | integer  | WiFi-Signalstärke (dBm).                                 |
+| `miner.hashRate`           | number   | Aktuelle Hashrate in **Giga-Hashes pro Sekunde** (mit 1e9 multiplizieren für H/s). |
+| `miner.sAccepted`          | integer  | Vom Pool akzeptierte Shares.                             |
+| `miner.sRejected`          | integer  | Vom Pool abgelehnte Shares.                              |
+| `miner.uptimeSeconds`      | integer  | Sekunden seit dem aktuellen Boot.                        |
+| `miner.uptimeEver`         | integer  | Kumulierte Betriebszeit über alle Boots, in Sekunden.    |
+| `miner.networkDiff`        | string   | Aktuelle Bitcoin-Netzwerk-Schwierigkeit (dezimal).       |
+| `miner.poolDiff`           | string   | Aktuelle, vom Pool gesetzte Share-Schwierigkeit.         |
+| `miner.lastDiff`           | string   | Schwierigkeit der zuletzt eingereichten Share.           |
+| `miner.bestDiffSession`    | string   | Beste Share-Schwierigkeit dieses Boots.                  |
+| `miner.bestDiffEver`       | string   | Beste Share-Schwierigkeit aller Zeiten.                  |
+| `miner.blkhits`            | integer  | Lebenslange Anzahl von Treffern auf Netzwerk-Schwierigkeit (Block-Glück). |
+| `miner.freeHeap`           | integer  | Aktueller freier Heap in Bytes.                          |
+| `miner.minFreeHeap`        | integer  | Niedrigster beobachteter freier Heap dieses Boots.       |
+| `stratum.url`              | string   | Aktiver Pool `host:port`.                                |
+| `stratum.user`             | string   | Authentifizierter Worker-Name (wallet.worker).           |
+| `temps.vcore`              | number / null | Kerntemperatur in °C, oder `null` auf Boards ohne On-Chip-Sensor. |
+| `temps.asic`               | null     | Für zukünftige Hardware reserviert. Auf ESP32 immer `null`. |
+| `storage.fsTotal`          | integer  | Größe des geräteinternen Dateisystems in Bytes.          |
+| `storage.fsUsed`           | integer  | Nutzung des geräteinternen Dateisystems in Bytes.        |
 
 ### Beispiel
 
 ```bash
-curl -s http://192.168.1.42/api/system/info | jq '.miner.hashRate * 1e9'
+curl http://192.168.1.42/api/system/info | jq '.miner.hashRate * 1e9'
+# → 956432  (d. h. 956,4 KH/s)
 ```
 
 ---
 
 ## `POST /api/system/restart`
 
-Startet das Gerät neu. Kein Request-Body.
+Startet den Miner sofort neu.
+
+### Request
+
+Kein Body.
 
 ### Response
 
-```
-HTTP/1.1 200 OK
-Content-Type: text/plain
-
-Restarting...
+```json
+{ "status": "ok" }
 ```
 
-Das Gerät startet innerhalb von ~3 Sekunden neu. Die Stratum-Sitzung und alle ausstehenden Shares gehen verloren.
+Der Neustart erfolgt **~600 ms nach dem Senden der Antwort**, damit die Verbindung sauber geschlossen wird.
 
 ### Beispiel
 
 ```bash
 curl -X POST http://192.168.1.42/api/system/restart
 ```
+
+:::warning
+Ein Neustart beendet die Stratum-Sitzung und alle nicht eingereichten Shares. Vermeiden Sie geplante, regelmäßige Neustarts, sofern nicht wirklich nötig.
+:::

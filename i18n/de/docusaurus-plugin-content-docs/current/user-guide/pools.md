@@ -1,86 +1,36 @@
 ---
-sidebar_position: 7
+sidebar_position: 4
 title: Pools
 ---
 
-# Pool-Konfiguration
+# Pools
 
-So konfigurieren Sie Mining-Pools auf Ihrem NMMiner-Gerät.
+Weil die ESP32-Hashrate klein ist (ein paar hundert KH/s), verbindet sich NMMiner mit **niedrigschwelligen** Pools, die Shares weit unter der Netzwerk-Diff akzeptieren.
 
-## Konfigurationsmethoden
+NMMiner wird vorkonfiguriert mit unserem eigenen Pool ausgeliefert — **normalerweise müssen Sie nichts ändern**.
 
-Sie können Pool-Einstellungen auf drei Arten ändern:
+## Eingebaute Standardwerte
 
-| Methode                    | Am besten für                                        |
-| -------------------------- | ---------------------------------------------------- |
-| Captive-Portal             | Ersteinrichtung                                      |
-| NM Monitor                 | Laufende Verwaltung (empfohlen)                      |
-| API                        | Automatisierung, Bulk-Änderungen                     |
+| Steckplatz       | URL                                              | Region   |
+| ---------- | ------------------------------------------------ | -------- |
+| Primär    | `stratum+tcp://solobtc.nmminer.com:3333`         | Global   |
+| Fallback   | `stratum+tcp://au.solobtc.nmminer.com:3333`      | Asien-Pazifik |
 
-## Einstellungen
+Beide sind NMMiners offizielle [SoloBTC](https://solobtc.nmminer.com)-Pools, konzipiert für Miner im Bereich von hundert KH/s. Dashboard: [solobtc.nmminer.com](https://solobtc.nmminer.com).
 
-NMMiner unterstützt zwei Pool-Steckplätze:
+Wenn der primäre Pool nicht erreichbar wird, wechselt der Miner automatisch zum Fallback. Wenn sich der primäre erholt, wechselt der Miner innerhalb von ~10 Sekunden zurück (seit v1.7.05).
 
-| Einstellung          | Beschreibung                                                   |
-| -------------------- | -------------------------------------------------------------- |
-| **Primärer Pool**    | Haupt-Pool-URL. Der Miner wird zuerst hier verbinden.          |
-| **Primäres Wallet**  | Wallet-Adresse + Worker-Name (`bc1q...workername`)             |
-| **Primäres Passwort**| Worker-Passwort. Die meisten Pools akzeptieren `x`.            |
-| **Sekundärer Pool**  | Fallback-Pool. Wird verwendet, wenn der primäre ausfällt.      |
-| **Sekundäres Wallet**| Fallback-Wallet + Worker-Name.                                 |
-| **Sekundäres Passwort** | Fallback-Worker-Passwort.                                   |
+## Unterstützte Pool-URL-Schemata
 
-## Pool-URL-Format
+| Schema               | Bedeutung                                               |
+| -------------------- | ----------------------------------------------------- |
+| `stratum+tcp://`     | Einfaches TCP Stratum v1.                                 |
+| `stratum+ssl://`     | TLS-verpacktes Stratum (setzen Sie dies, wenn Ihr Pool SSL erfordert). |
 
-```
-stratum+tcp://pool-url:port
-stratum+ssl://pool-url:port
-```
+## Unterstützte Coins
 
-Beispiele:
-- `stratum+tcp://solobtc.nmminer.com:3333` (NMMiner SoloBTC)
-- `stratum+ssl://solo.ckpool.org:3333` (CK Solo Pool)
-- `stratum+tcp://stratum.braiins.com:3333` (Braiins geteilter Pool)
+NMMiner unterstützt derzeit **Bitcoin (BTC)** und **DigiByte (DGB)**. Beide verwenden SHA-256d, daher bedient dieselbe Hashing-Pipeline beide. Bekannte gute Endpunkte für jeden finden Sie in der [Pool-Liste](../reference/pool-list.md).
 
-## Workflow ändern
+## Warum keine großen kommerziellen Pools?
 
-### Über NM Monitor
-
-1. Öffnen Sie `http://<miner-ip>` in Ihrem Browser
-2. Gehen Sie zu **Einstellungen → Mining**
-3. Füllen Sie die Felder für primären und/oder sekundären Pool aus
-4. Klicken Sie auf **Speichern**
-5. Der Miner trennt die Verbindung und verbindet sich innerhalb weniger Sekunden mit dem neuen Pool
-
-### Über API
-
-```bash
-curl -X POST http://<miner-ip>/api/setting/mining \
-  -H "Content-Type: application/json" \
-  -d '{
-    "PrimaryPool": "stratum+tcp://neuer-pool.example.com:3333",
-    "PrimaryAddress": "bc1q....worker1",
-    "PrimaryPassword": "x"
-  }'
-```
-
-Siehe [Mining-Einstellungen API](../api/settings-mining.md) für Details.
-
-## Failover-Verhalten
-
-1. Der Miner verbindet sich mit dem **primären Pool**.
-2. Wenn die Verbindung zum primären Pool fehlschlägt (Timeout, Ablehnung, DNS-Fehler) → versucht **sekundären Pool**.
-3. Wenn die Verbindung zum sekundären Pool wiederhergestellt ist → der Miner **verbindet sich NICHT automatisch wieder** mit dem primären. Er bleibt beim sekundären.
-4. Um zum primären zurückzukehren: Starten Sie den Miner neu oder aktualisieren Sie die Einstellungen.
-
-:::tip
-Verwenden Sie den sekundären Pool als echten **Failover** — setzen Sie ihn auf einen zuverlässigen geteilten Pool wie Braiins. Wenn der primäre Solo-Pool ausfällt, minen Sie zumindest etwas.
-:::
-
-## Empfohlene Setups
-
-| Ziel                             | Primär                                  | Sekundär                        |
-| -------------------------------- | --------------------------------------- | ------------------------------- |
-| Solo-Lotterie                    | `solobtc.nmminer.com:3333`              | `solo.ckpool.org:3333`          |
-| Hybrid (Solo + stetiges Einkommen)| `solobtc.nmminer.com:3333`              | `stratum.braiins.com:3333`      |
-| Stetiges Einkommen               | `stratum.braiins.com:3333`              | `btc.f2pool.com:3333`           |
+NMMiners Hashrate liegt in der Größenordnung von Hunderten von KH/s. Pools, die eine hohe Mindest-Share-Schwierigkeit vorschreiben, lehnen jede NMMiner-Share ab. Bleiben Sie bei NMMiners offiziellen [SoloBTC](https://solobtc.nmminer.com)-Pools oder Community-Solo-Pools — allem, was eine sehr niedrige Share-Diff akzeptiert.
